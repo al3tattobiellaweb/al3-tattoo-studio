@@ -151,7 +151,7 @@ This is a dark studio at night. The ground is warm ink, and everything worth see
 
 The system is built to be seen at scroll, one act at a time. Each act holds one big thing on screen, and the page is long because the work is the show. Controls stay small, flat and quiet so that nothing competes with a tattoo. The drama belongs to the pictures and the motion, and the interface steps back.
 
-Confirmed rejections: photo cards in the hero (designs fly free, with no arm, body or background), the red drip band under the hero, a tremor on the process plate, tape on the Art Wall, and a viper that follows the cursor.
+Confirmed rejections: photo cards in the hero (designs fly free, with no arm, body or background), the red drip band under the hero, a tremor on the process plate, the Art Wall (removed in round 13), and a viper that follows the cursor.
 
 **Key Characteristics:**
 - Warm ink ground, never pure black, with bone text.
@@ -275,7 +275,7 @@ There are no cards. Work is held by three forms:
 - **Bar:** fixed, transparent over the hero, then a blurred Ink 950 at 72% from the desk onward (solid, without blur, on phones). No line beneath it.
 - **Links:** 15px sentence case in Bone 2, going to Bone with a 2px Logo Red underline that draws from the left.
 - **Order:** badge and name, links, sound toggle, event chip, WhatsApp pill, menu button. Links leave below 1100px and the menu button takes over. The event chip leaves below 480px, where the menu lists it.
-- **Menu:** a full-screen sheet on Ink 950 under the same red and blue light as the Art Wall. Section names in the display face, then the WhatsApp button, a call button, the live status and the address. A link closes it and lands at once, with no flight through the acts.
+- **Menu:** a full-screen sheet on Ink 950 under a red light from the left and a blue one from the right, like the hero's neon. Section names in the display face, then the WhatsApp button, a call button, the live status and the address. A link closes it and lands at once, with no flight through the acts.
 
 ### Hero Badge
 The studio's mark as the title, inked in by the needle, then alive. Two layers float 44px apart; the badge turns toward the pointer, light follows it, and a spark runs round the rim. Holding it runs the machine, with shudder, a red/blue split and ink spitting off the rim. A double click flips it to Sgt. Zippo's rose, built on the same geometry with the same effects, and the line above it changes with it.
@@ -284,7 +284,7 @@ The studio's mark as the title, inked in by the needle, then alive. Two layers f
 Die-cut designs drift past the camera with a neon aura, red on the left and blue on the right. Clicking one opens it in the lightbox, which browses designs only.
 
 ### Viper Rail
-A drawn viper down the left edge whose head marks the scroll position. Its section dots turn Logo Red once passed; on desktop each names its section on hover and scrolls there.
+A drawn viper down the left edge, after Sgt. Zippo's painted skateboard viper, with no head: one tip stays at the top and the other marks the scroll position, both tapering alike. A glossy black body (16px, 9px on phones) with hard white highlights, chunky bone slabs stacked down the side facing the page (pale on top, grey toward the tail, standing out past the outline, a smaller row at their roots), and a thin Logo Red rim where the outline meets the dark ground. Its section dots turn Logo Red once passed; on desktop each names its section on hover and scrolls there.
 
 ### Machine Cursor
 On fine pointers the cursor is a coil tattoo machine with the needle tip on the pointer, leaving ink splatter on click.
@@ -316,5 +316,5 @@ A near-black veil with a light blur. Designs sit on a soft red bloom; tattoos ca
 - **Don't** put shadows on buttons, chips or tiles at rest.
 - **Don't** use pure black (#000) for a surface.
 - **Don't** set new text below 13px.
-- **Don't** add a blood band under the hero, a tremor on the process plate, tape on the wall, or a viper that follows the cursor.
+- **Don't** add a blood band under the hero, a tremor on the process plate, or a viper that follows the cursor.
 - **Don't** add numbering such as 01 / 05 to steps or sections.

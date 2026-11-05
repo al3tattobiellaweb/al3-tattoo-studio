@@ -29,11 +29,11 @@ His own hand. He draws each design himself, on iPad with Procreate and an Apple 
 
 ## Capabilities and Constraints
 
-- One public page, Italian only (the English act names "The Studio Space" and "The Art Wall" are the owner's).
+- One public page, Italian only (the English act name "The Studio Space" is the owner's).
 - Static site with no backend and no forms: contact happens on WhatsApp or Instagram.
 - The privacy notice states what the site really does: it contacts only its own host, with no analytics, session replay or browser storage. Adding any of these means updating the notice first.
 - Legal details on the page: P.IVA 02665090029; privacy contact al3tattoostudio@gmail.com. The notice has not been reviewed by a lawyer.
-- The archive shows at least 150 works (275 today). The hero and The Art Wall show 130 designs: his 21 drawings and 109 redrawn designs.
+- The archive shows at least 150 works (275 today). The hero shows 130 designs: his 21 drawings and 109 redrawn designs.
 - AI is used for one thing only: faithful redraws of his existing tattoos, each from its original photo. Zippo has approved them, and the footer discloses them. Photos, archive works and motion stay real or code-drawn, and no design is ever invented. Any other AI media, such as an AI-extended video, needs the owner's approval and its own disclosure.
 - Terms: "Il Tatuatiere", "Sulla pelle", "Solo il disegno", "Stili".
 

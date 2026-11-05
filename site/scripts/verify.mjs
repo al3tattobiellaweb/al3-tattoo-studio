@@ -169,7 +169,7 @@ if (VP[0] <= 1100) {
   await ev(`document.querySelector('.menu-links a[href="#archivio"]').click()`);
   await sleep(1200);
   const l = await ev(`({ closed: !document.getElementById('menu').open, top: Math.round(document.querySelector('#archivio').getBoundingClientRect().top) + 0, stopped: __lenis.isStopped })`);
-  check("menu opens and lands on a section", m.open && m.links >= 6 && l.closed && Math.abs(l.top) < 40 && !l.stopped, JSON.stringify({ ...m, ...l }));
+  check("menu opens and lands on a section", m.open && m.links >= 5 && l.closed && Math.abs(l.top) < 40 && !l.stopped, JSON.stringify({ ...m, ...l }));
 }
 // footer (round 8): the Partita IVA and the privacy contact are the owner's; missing ones show a "da inserire" marker
 const legal = await ev(`(() => { document.getElementById('privacy-open').click(); const d = document.getElementById('privacy');

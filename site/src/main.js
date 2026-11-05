@@ -20,7 +20,6 @@ import { createBadge } from "./badge.js";
 import { STUDIO, waLink, LOADER_LINES, STYLES, STYLE_LABEL, WORKS, PROCESS, WALKIN, SNAKES, SPACE, PRIVACY_UPDATED } from "./data.js";
 import { FrameStrip } from "./lib/framestrip.js";
 import { FEED, MIX_INK } from "./catalogue.js";
-import { INK_ASPECT } from "./ink-aspect.js";
 import { DESIGNS } from "./designs.js";
 import { IG_POSTS } from "./ig-posts.js";
 
@@ -56,12 +55,9 @@ const TATTOOS = ARCHIVE.filter((w) => !w.design);
 const BADGE_TILE = { id: "z21", file: "z21", style: "lettering", title: "AL3 Tattoo Studio, il marchio", design: true };
 const label = (w) => w.title || `${STYLE_LABEL[w.style]} · ${w.year}`;
 const altText = (w) => `${STYLE_LABEL[w.style]} — ${w.title || `lavoro del ${w.year}`}`;
-// open a design from the hero or the wall: browse only the designs that fly there (owner, round 9: the arrows showed
+// open a design from the hero: browse only the designs that fly there (owner, round 9: the arrows showed
 // photos on skin), his drawings as full sheets, tattoos on their lifted design ("Sulla pelle" still shows one's photo)
-const openDesign = (id, list) => {
-  const l = list || POOL;
-  lightboxOpen(l, l.findIndex((w) => w.id === id), true, true);
-};
+const openDesign = (id) => lightboxOpen(POOL, POOL.findIndex((w) => w.id === id), true, true);
 // hero pool: the strongest designs first (they are gated by the loader), then the rest shuffled
 const LEAD = ["33", "a175", "14", "a298", "16", "a094", "a303", "17", "a020", "a432", "a355", "a097", "a427", "a184", "a077", "a663", "a392", "a009"];
 const POOL = (() => {
@@ -484,30 +480,6 @@ function actStyles() {
   }));
 }
 
-/* ── Act 3b: The Art Wall — his designs hung on the pegboard, scrolled sideways ── */
-function actWall() {
-  const track = $("#muro-track");
-  // every design he has (owner, round 8): his own drawings first, then the tattoos in a different order from the hero
-  const tat = POOL.filter((w) => !w.design);
-  const cards = [...POOL.filter((w) => w.design), ...tat.slice(LEAD.length), ...tat.slice(0, LEAD.length)];
-  let seed = 7;
-  const rnd = () => ((seed = (seed * 16807) % 2147483647) / 2147483647);
-  track.innerHTML = cards.map((w) => `<button class="flash" type="button" style="aspect-ratio:${INK_ASPECT[w.file] || 0.8};--r:${((rnd() - 0.5) * 12).toFixed(1)}deg;--dy:${((rnd() - 0.5) * 5).toFixed(1)}vh" data-id="${w.id}" aria-label="${altText(w)}, solo il disegno">
-      <img src="${w.hsrc}" alt="" loading="lazy" decoding="async" /></button>`).join("");
-  $("#muro-n").textContent = cards.length;
-  $$(".flash", track).forEach((b) => b.addEventListener("click", () => openDesign(b.dataset.id, cards))); // in the wall's order
-  const dist = () => Math.max(0, track.scrollWidth - innerWidth);
-  const PACE = 1.5; // the wall slides 1.5 px per px scrolled: all 109 designs pass without an endless pin
-  const muro = $("#muro"); // sticky: one screen plus the slide, measured again before every refresh
-  const size = () => { muro.style.height = `${innerHeight + Math.round(dist() / PACE)}px`; };
-  size();
-  ScrollTrigger.addEventListener("refreshInit", size);
-  gsap.to(track, {
-    x: () => -dist(), ease: "none",
-    scrollTrigger: { trigger: "#muro", start: "top top", end: "bottom bottom", scrub: 0.6, invalidateOnRefresh: true },
-  });
-}
-
 /* ── Act 4: archive (paged) + lightbox ───────────────────── */
 function actArchive() {
   const grid = $("#grid"), filters = $("#filters"), countEl = $("#archive-count"), more = $("#more-btn");
@@ -655,9 +627,9 @@ function chrome() {
   });
   // the viper rail: comes down the left edge as you scroll; its scales are the sections
   const rail = createViperRail($("#vrail"), {
-    sections: [["top", "Inizio"], ["postazione", "Processo"], ["spazio", "The Studio Space"], ["stili", "Stili"], ["muro", "The Art Wall"],
+    sections: [["top", "Inizio"], ["postazione", "Processo"], ["spazio", "The Studio Space"], ["stili", "Stili"],
       ["archivio", "Archivio"], ["walkin", "Walk-in"], ["studio", "Studio"]].map(([id, label]) => ({ el: $(`#${id}`), label })),
-    mobile: MOBILE, reduced: REDUCED, fine: FINE,
+    mobile: MOBILE, reduced: REDUCED,
     scrollTo: (el) => lenis.scrollTo(el, { duration: 1.6 }),
   });
   ScrollTrigger.addEventListener("refresh", () => rail.layout());
@@ -715,8 +687,8 @@ function chrome() {
       dot.style.transform = `translate(${(x - TIP[0]).toFixed(1)}px, ${(y - TIP[1]).toFixed(1)}px)`;
       ring.style.transform = `translate(${rx}px, ${ry}px) translate(-50%, -50%)`;
     });
-    document.addEventListener("pointerover", (e) => { if (e.target.closest("a, button, .tile, .flash")) cur.classList.add("hot"); });
-    document.addEventListener("pointerout", (e) => { if (e.target.closest("a, button, .tile, .flash")) cur.classList.remove("hot"); });
+    document.addEventListener("pointerover", (e) => { if (e.target.closest("a, button, .tile")) cur.classList.add("hot"); });
+    document.addEventListener("pointerout", (e) => { if (e.target.closest("a, button, .tile")) cur.classList.remove("hot"); });
   }
 }
 
@@ -801,7 +773,6 @@ actDesk();
 actProcess();
 actSpace();
 actStyles();
-actWall();
 actArchive();
 actStudio();
 chrome();
