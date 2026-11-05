@@ -155,8 +155,10 @@ check("lightbox opens and → steps", c1 && c2 && c1 !== c2, `${c1} → ${c2}`);
 await send("Input.dispatchKeyEvent", { type: "keyDown", key: "Escape", code: "Escape", windowsVirtualKeyCode: 27 });
 await sleep(300);
 check("Esc closes the lightbox", await ev(`document.getElementById('lightbox').hidden`));
-const imgOk = await ev(`(async () => { const im = document.getElementById('lb-img'); return im.naturalWidth > 0; })()`);
-check("lightbox image decoded", imgOk);
+// waits for the image itself (up to 5 s): on the live site a phone run once read it 0.6 s in, still downloading
+const imgOk = await ev(`(async () => { const im = document.getElementById('lb-img'); const ok = await Promise.race([im.decode().then(() => true, () => false), new Promise((r) => setTimeout(() => r(false), 5000))]);
+  return { ok: ok && im.naturalWidth > 0, src: im.src.split('/').pop(), w: im.naturalWidth }; })()`);
+check("lightbox image decoded", imgOk.ok, JSON.stringify(imgOk));
 const broken = await ev(`[...document.images].filter(i => i.complete && i.naturalWidth === 0 && i.getAttribute('loading') !== 'lazy').map(i => i.src)`);
 check("no broken eager images", broken.length === 0, broken.slice(0, 3).join(", "));
 // the menu (round 10): below 1100 px it holds the sections; a link closes it and lands there, and the page scrolls again
