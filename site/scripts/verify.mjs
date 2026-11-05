@@ -42,6 +42,9 @@ if (!IS_MOBILE) {
   }
   const lbSrc = opened ? await ev(`document.getElementById('lb-img').src`) : ""; // a tattoo's lifted design, or one of his drawings (/works/zNN)
   check("flying tattoo click opens its design", opened && (lbSrc.includes('/ink/') || /\/works\/z\d\d\.webp/.test(lbSrc)), opened ? await ev(`document.getElementById('lb-cap').textContent`) : "");
+  // his drawings were never posted: no Instagram button; every other hero design links to its post
+  const ig = await ev(`(() => { const a = document.getElementById('lb-ig'); return { hidden: a.hidden, href: a.getAttribute('href') || '' }; })()`);
+  check("hero design's Instagram button matches the design", /\/works\/z\d\d\.webp/.test(lbSrc) ? ig.hidden : !ig.hidden && ig.href.startsWith('https://www.instagram.com/'), JSON.stringify(ig));
   // the system pointer is hidden, so the machine cursor must stay visible over the open lightbox
   await send("Input.dispatchMouseEvent", { type: "mouseMoved", x: 640, y: 380 });
   await sleep(450);
@@ -132,6 +135,9 @@ await ev(`document.getElementById('lb-mode').click()`);
 await sleep(400);
 const inkSrc = await ev(`document.getElementById('lb-img').src`);
 check("lightbox toggles to the lifted design", modeVisible && inkSrc.includes('/ink/'), inkSrc.split('/').slice(-2).join('/'));
+// round 12: the work's own Instagram post sits next to its number (w33 is a frame of the "Mix" reel)
+const igl = await ev(`(() => { const a = document.getElementById('lb-ig'); return { shown: !a.hidden && a.offsetWidth > 0, href: a.href, blank: a.target === '_blank' }; })()`);
+check("lightbox links the work's Instagram post", igl.shown && igl.blank && igl.href === 'https://www.instagram.com/reel/DZdb06dsAk7/', JSON.stringify(igl));
 await ev(`document.getElementById('lb-close').click()`);
 await sleep(300);
 

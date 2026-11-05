@@ -22,6 +22,7 @@ import { FrameStrip } from "./lib/framestrip.js";
 import { FEED, MIX_INK } from "./catalogue.js";
 import { INK_ASPECT } from "./ink-aspect.js";
 import { DESIGNS } from "./designs.js";
+import { IG_POSTS } from "./ig-posts.js";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -571,7 +572,7 @@ function actArchive() {
   }));
 
   // lightbox: the photo on skin or, when the design was lifted off the skin, the design alone
-  const lb = $("#lightbox"), img = $("#lb-img"), cap = $("#lb-cap"), mode = $("#lb-mode"), fig = $(".lb-fig");
+  const lb = $("#lightbox"), img = $("#lb-img"), cap = $("#lb-cap"), mode = $("#lb-mode"), fig = $(".lb-fig"), ig = $("#lb-ig");
   let list = [], idx = 0, lastFocus = null, inkMode = false, designsOnly = false;
   const show = (i) => {
     if (i !== idx && designsOnly) inkMode = true; // stepping through designs lands on the next design, even after "Sulla pelle"
@@ -582,6 +583,10 @@ function actArchive() {
     img.src = ink ? `/ink/${w.file}.webp` : `/works/${w.file}.webp`;
     img.alt = ink ? `${altText(w)}, solo il disegno` : altText(w);
     cap.innerHTML = `<b>${STYLE_LABEL[w.style]}</b>${[w.title, w.year].filter(Boolean).join(" · ")} · ${idx + 1}/${list.length}`;
+    // the post it comes from (round 12, owner): the photo inside a carousel, the reel for the 2026 frames; none for the rest
+    const post = IG_POSTS[w.id];
+    ig.hidden = !post;
+    if (post) { ig.href = `https://www.instagram.com/${post}`; ig.setAttribute("aria-label", `${altText(w)}: apri il post su Instagram`); }
     mode.hidden = !w.ink || !!w.design; // a drawing has no skin to switch to
     mode.textContent = ink ? "Sulla pelle" : "Solo il disegno";
     mode.setAttribute("aria-pressed", ink ? "true" : "false");
