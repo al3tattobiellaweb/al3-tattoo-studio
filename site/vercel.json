@@ -2,6 +2,12 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "redirects": [
     {
+      "source": "/",
+      "has": [{ "type": "host", "value": "al3-tattoo-studio-biella.vercel.app" }],
+      "destination": "https://www.al3tattoobiella.com/",
+      "permanent": true
+    },
+    {
       "source": "/:path*",
       "has": [{ "type": "host", "value": "al3-tattoo-studio-biella.vercel.app" }],
       "destination": "https://www.al3tattoobiella.com/:path*",
