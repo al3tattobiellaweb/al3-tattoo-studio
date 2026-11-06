@@ -576,6 +576,10 @@ function actStudio() {
   // created after the pin, so its end includes the pinned length; starts the download three screens ahead
   ScrollTrigger.create({ trigger: film, start: "top 300%", end: "bottom top", onToggle: (s) => { if (s.isActive) load(); } });
   addEventListener("resize", fit);
+}
+
+/* ── Act 5: the studio — where, when, the buttons, the people (round 19: moved from the VVV act to the bottom) ── */
+function actContact() {
   gsap.fromTo(".print-lead, .people-quote, .person", { opacity: 0, y: 40 }, { opacity: 1, y: 0, stagger: 0.12, duration: 0.8, ease: "power2.out", scrollTrigger: { trigger: ".people", start: "top 85%" } });
 }
 
@@ -590,8 +594,8 @@ function chrome() {
   });
   // the neon rail: one tube down the left edge, brightest where you are; its stations are the sections
   const rail = createNeonRail($("#vrail"), {
-    sections: [["top", "Inizio"], ["postazione", "Processo"], ["studio", "Studio"], ["spazio", "The Studio Space"], ["stili", "Stili"],
-      ["archivio", "Archivio"], ["walkin", "Walk-in"]].map(([id, label]) => ({ el: $(`#${id}`), label })),
+    sections: [["top", "Inizio"], ["postazione", "Processo"], ["vvv", "VVV"], ["spazio", "The Studio Space"], ["stili", "Stili"],
+      ["archivio", "Archivio"], ["walkin", "Walk-in"], ["studio", "Studio"]].map(([id, label]) => ({ el: $(`#${id}`), label })),
     mobile: MOBILE, reduced: REDUCED,
     scrollTo: (el) => lenis.scrollTo(el, { duration: 1.6 }),
   });
@@ -725,6 +729,7 @@ actStudio(); // round 18: the VVV act comes before The Studio Space on the page,
 actSpace();
 actStyles();
 actArchive();
+actContact();
 chrome();
 effects();
 gate.job(document.fonts.ready);

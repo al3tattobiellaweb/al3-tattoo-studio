@@ -403,11 +403,15 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .vvv-stage.ready > canvas { opacity: 1; }
 .vvv-shade { position: absolute; inset: 0; pointer-events: none; /* from the act above, into the copy below */
   background: linear-gradient(180deg, var(--ink-950) 0%, rgba(11, 10, 11, 0) 14%, rgba(11, 10, 11, 0) 64%, rgba(11, 10, 11, .55) 82%, var(--ink-950) 99%); } /* from the process act above (round 18) */
-.studio-copy { position: relative; z-index: 2; padding-top: clamp(28px, 5vh, 56px); display: grid; grid-template-columns: minmax(min-content, 1.1fr) minmax(0, .9fr);
+.studio-copy { position: relative; z-index: 2; padding-top: clamp(28px, 5vh, 56px); display: grid; grid-template-columns: minmax(min-content, 1fr);
   gap: clamp(32px, 6vw, 110px); align-items: end; }
 .studio-lead .body { max-width: 52ch; }
 @media (min-width: 760px) { .studio-lead .h2 { white-space: nowrap; } } /* "Virtus virescit" stays one line: the column grows to it */
 .studio-facts .info { margin-top: 0; }
+/* the studio at the bottom (round 19): the four facts in a row, the two buttons, then the people */
+.contact { padding: clamp(100px, 14vh, 160px) 0 clamp(70px, 10vh, 120px); }
+.contact-facts .info { grid-template-columns: repeat(4, minmax(0, 1fr)); margin: 0 0 30px; }
+@media (max-width: 900px) { .contact-facts .info { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 .h2.latin { font-size: clamp(30px, 4.6vw, 70px); } /* "VIRTUS VIRESCIT" is 9× its size wide: two lines in the copy column */
 .studio-copy .body { margin: 26px 0 0; }
 .info { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px 28px; margin: 34px 0; }
