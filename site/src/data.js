@@ -125,7 +125,7 @@ export const SPACE = {
 };
 
 // every snake in the archive (Zippo's favourite subject): feed ids + the 2026 reel's snake & butterfly
-export const SNAKES = ["a080", "a225", "a226", "a301", "a355", "a370", "a396", "a428", "a455", "a461", "a462", "a463", "a496", "a546", "a561", "a569", "a591", "a633", "17"];
+export const SNAKES = ["a080", "a225", "a226", "a301", "a355", "a371", "a396", "a428", "a455", "a461", "a463", "a496", "a546", "a561", "a569", "a591", "a633", "17"]; // round 16: a370 → a371 (the whole piece), a462 off (a close-up of a461)
 
 export const WALKIN = {
   until: "2026-11-01", // the banner hides from this date (Rome time)

@@ -19,7 +19,7 @@ import { createInkLayer, createMachine, tattooTitle, stencilHeadings, buildDrips
 import { createBadge } from "./badge.js";
 import { STUDIO, waLink, LOADER_LINES, STYLES, STYLE_LABEL, WORKS, PROCESS, WALKIN, SNAKES, SPACE, PRIVACY_UPDATED } from "./data.js";
 import { FrameStrip } from "./lib/framestrip.js";
-import { FEED, MIX_INK } from "./catalogue.js";
+import { FRESH, FEED, MIX_INK, OFF_ARCHIVE } from "./catalogue.js";
 import { DESIGNS } from "./designs.js";
 import { IG_POSTS } from "./ig-posts.js";
 
@@ -44,12 +44,15 @@ let fxInk = null, fxMachine = null, badge = null;
 const SNAKE_SET = new Set(SNAKES);
 // his own drawings (assets/da zippo, round 8): first wherever designs show; in the archive under "Disegni"
 const DRAWINGS = DESIGNS.map((d) => ({ id: d.id, file: d.id, style: "disegno", year: null, title: d.t, ink: true, design: true }));
-// the whole archive: 2026 reel frames (titled) first, then the feed, newest first; the drawings at the end ("Tutti" skips them)
-const ARCHIVE = [
+// the whole archive: his newest posts (round 16), the 2026 reel frames (titled), then the feed, newest first; the drawings at the end ("Tutti" skips them)
+// (round 16: the owner's cut, OFF_ARCHIVE, leaves the archive; the hero still flies every design, cut or not)
+const OFF = new Set(OFF_ARCHIVE);
+const ALL_TATTOOS = [
+  ...FRESH.map((f) => ({ id: f.id, file: f.id, style: f.style, year: f.year, title: null, ink: f.ink })),
   ...WORKS.map((w) => ({ id: w.id, file: `w${w.id}`, style: w.style, year: 2026, title: w.t, ink: MIX_INK.includes(w.id) })),
   ...FEED.map((f) => ({ id: f.id, file: f.id, style: f.style, year: f.year, title: null, ink: f.ink })),
-  ...DRAWINGS,
 ];
+const ARCHIVE = [...ALL_TATTOOS.filter((w) => !OFF.has(w.id)), ...DRAWINGS];
 const TATTOOS = ARCHIVE.filter((w) => !w.design);
 // the AL3 badge from his folder: not one of the designs, only a card in the Stili lettering chapter
 const BADGE_TILE = { id: "z21", file: "z21", style: "lettering", title: "AL3 Tattoo Studio, il marchio", design: true };
@@ -61,7 +64,7 @@ const openDesign = (id) => lightboxOpen(POOL, POOL.findIndex((w) => w.id === id)
 // hero pool: the strongest designs first (they are gated by the loader), then the rest shuffled
 const LEAD = ["33", "a175", "14", "a298", "16", "a094", "a303", "17", "a020", "a432", "a355", "a097", "a427", "a184", "a077", "a663", "a392", "a009"];
 const POOL = (() => {
-  const inked = TATTOOS.filter((w) => w.ink);
+  const inked = ALL_TATTOOS.filter((w) => w.ink);
   const lead = LEAD.map((id) => inked.find((w) => w.id === id)).filter(Boolean);
   const rest = inked.filter((w) => !lead.includes(w));
   let seed = 2024;

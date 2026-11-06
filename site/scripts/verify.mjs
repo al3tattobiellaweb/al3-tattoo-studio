@@ -121,7 +121,9 @@ check("archive holds 150+ works", all.total >= 150, JSON.stringify(all));
 await ev(`document.querySelector('#filters [data-key=serpenti]').click()`);
 await sleep(400);
 const snakes = await ev(`({ total: +document.getElementById('archive-count').textContent, shown: document.querySelectorAll('#grid li:not(.out)').length })`);
-check("Serpenti filter collects his snakes", snakes.total === 19 && snakes.shown === 19, JSON.stringify(snakes));
+// the count comes from SNAKES in src/data.js (19 until round 16, 18 since), so the check follows the list
+const SNAKE_N = (await import(new URL("../src/data.js", import.meta.url))).SNAKES.length;
+check("Serpenti filter collects his snakes", snakes.total === SNAKE_N && snakes.shown === SNAKE_N, JSON.stringify({ ...snakes, list: SNAKE_N }));
 await ev(`document.querySelector('#filters [data-key=tutti]').click()`);
 await sleep(400);
 await ev(`document.getElementById('more-btn').click()`);
