@@ -230,7 +230,7 @@ The left edge belongs to the neon rail: 64px wide on desktop, 22px on phones. Pi
 
 Each act has its own composition, with copy and picture never overlapping. VVV keeps to it at full bleed: the film fades into the ground at its foot and the copy starts below it. A picture starts past the end of its title's column, or passes behind a solid panel.
 
-Breakpoints: below 1100px the nav links go and the archive drops from five columns to four; below 760px the layout becomes the phone composition, with two archive columns and the Studio Space unpinned; below 420px the brand text goes. On phones and coarse pointers, grain, nav blur, heavy filters and the badge's colour split are removed to keep scrolling smooth.
+Breakpoints: below 1100px the nav links go and the archive drops from five columns to four; below 760px the layout becomes the phone composition, with two archive columns and the VVV film unpinned; below 420px the brand text goes. On phones and coarse pointers, grain, nav blur, heavy filters and the badge's colour split are removed to keep scrolling smooth.
 
 ## Elevation & Depth
 
@@ -238,7 +238,7 @@ Lit, not lifted. Depth comes from neon on a dark ground and from real 3D, such a
 
 ### Shadow Vocabulary
 - **Floating sheet** (`box-shadow: 0 40px 80px -30px rgba(0, 0, 0, .9)`): his drawings in Stili, which hang in the air.
-- **Print** (`box-shadow: 0 30px 60px -20px rgba(0, 0, 0, .9)`): the photos landing in The Studio Space.
+- **Print** (`box-shadow: 0 30px 60px -20px rgba(0, 0, 0, .9)`): the three photos of The Studio Space, side by side; on hover a print straightens, lifts 8px and its shadow deepens, and a small enlarge sign shows (always shown on touch). A click opens it in the lightbox.
 - **Neon tube** (`box-shadow: 0 0 8px 2px var(--red-hi), 0 0 40px 10px rgba(211, 23, 43, .65), 0 0 160px 60px rgba(211, 23, 43, .25)`): the hero's two tubes, the same way in blue.
 - **Dialog** (`box-shadow: 0 40px 100px rgba(0, 0, 0, .8)`): the privacy notice.
 
@@ -247,7 +247,7 @@ Lit, not lifted. Depth comes from neon on a dark ground and from real 3D, such a
 
 ## Shapes
 
-Three forms do all the work. Controls are full pills (999px), and small marks and dots are circles. Everything that shows work is square-cornered: photos, tiles, sheets and prints. The designs themselves are die-cut, so their silhouette is the shape. Bars are 2px-rounded and at least 3px tall. Thin lines are rare and each has a job: the owl's leader lines, the hero's red separator, hover underlines, and the outlines of the Studio Space window and the privacy notice.
+Three forms do all the work. Controls are full pills (999px), and small marks and dots are circles. Everything that shows work is square-cornered: photos, tiles, sheets and prints. The designs themselves are die-cut, so their silhouette is the shape. Bars are 2px-rounded and at least 3px tall. Thin lines are rare and each has a job: the owl's leader lines, the hero's red separator, hover underlines, and the outline of the privacy notice.
 
 ## Components
 

@@ -62,7 +62,7 @@ Undecided:
 
 - 275 real works on skin (`site/public/works`) and his 21 original designs (`assets/da zippo`).
 - One design followed to the healed tattoo: his owl (`assets/process`).
-- His desk photo (`assets/process`), a walk-through video and three photos of the studio (`assets/al3 studio`), and post covers of the sculptures, the artist at work and the bulldog (`site/public/studio`).
+- His desk photo (`assets/process`), a walk-through video (no longer on the site since round 15) and three photos of the studio (`assets/al3 studio`), and post covers of the sculptures, the artist at work and the bulldog (`site/public/studio`).
 - The 109 redraw masters (`assets/redraws`).
 
 Not on hand, and never to be invented: testimonials, reviews, press, awards, client numbers, prices, or the bulldog's name.

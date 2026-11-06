@@ -301,92 +301,17 @@ function actProcess() {
   });
 }
 
-/* ── Act 2b: The Studio Space — his walk through the studio, scrubbed by scroll (round 8, replaces the Vipera band) ── */
+/* ── Act 2b: The Studio Space — his three photos side by side; a click opens one large (round 15: the walk video is gone) ── */
 function actSpace() {
-  const stage = $("#space-stage"), win = $("#space-window"), canvas = $("#space-film"), amb = $("#space-amb"), tag = $("#space-tag");
   $("#space-line").textContent = SPACE.line;
-  const stopsHost = $("#space-stops");
-  stopsHost.innerHTML = SPACE.stops.map((s) => `<li>${s.t}</li>`).join("");
-  const stopEls = $$("li", stopsHost);
-  $("#space-photos").innerHTML = SPACE.photos.map((p, i) =>
-    `<figure class="space-photo p${i}" style="--rot:${p.rot}deg"><img src="/space/${p.file}${MOBILE ? "_s" : ""}.webp" alt="${p.alt}" loading="lazy" /></figure>`).join("");
-  const photos = $$(".space-photo", stage).map((el, i) => ({ el, ...SPACE.photos[i] }));
-  const actx = amb.getContext("2d");
-  let cur = -1;
-  const setStop = (f) => { // the stop the walk has reached
-    let k = 0;
-    SPACE.stops.forEach((s, i) => { if (f >= s.at) k = i; });
-    if (k === cur) return;
-    cur = k;
-    stopEls.forEach((li, i) => li.classList.toggle("on", i === k));
-    tag.textContent = SPACE.stops[k].t;
-  };
-  setStop(0);
-  const poster = $(".space-poster", win);
-  // the ambient copy: drawn small, softened and darkened in the canvas itself; the browser's upscale does the rest
-  // (a CSS blur on a full-screen layer re-ran on every scroll frame)
-  if ("filter" in actx) actx.filter = "blur(1.2px) saturate(0.8)";
-  const ambFrom = (src) => {
-    try { actx.drawImage(src, 0, 0, amb.width, amb.height); } catch (e) { return; /* not decoded yet */ }
-    actx.save(); actx.filter = "none"; actx.fillStyle = "rgba(11, 10, 11, .4)"; actx.fillRect(0, 0, amb.width, amb.height); actx.restore();
-  };
-  if (poster.complete) ambFrom(poster); else poster.addEventListener("load", () => ambFrom(poster), { once: true });
-
-  if (MOBILE) { // phones: no pin, no frame pack; the walk loops in the window while it is on screen, the stops follow it
-    const video = document.createElement("video");
-    Object.assign(video, { muted: true, loop: true, playsInline: true, preload: "none", poster: "/space/walk-poster.webp" });
-    video.setAttribute("muted", ""); video.setAttribute("playsinline", ""); video.setAttribute("aria-hidden", "true");
-    win.insertBefore(video, canvas);
-    canvas.remove();
-    if (REDUCED) video.controls = true; // no autoplay: the visitor starts it
-    new IntersectionObserver(([e]) => {
-      if (e.isIntersecting) {
-        if (!video.src) video.src = "/space/walk_m.mp4";
-        if (!REDUCED) video.play().catch(() => {});
-      } else video.pause();
-    }, { rootMargin: "120px 0px" }).observe(win);
-    video.addEventListener("timeupdate", () => setStop(video.currentTime / (video.duration || 8.7)));
-    return;
-  }
-
-  const ctx = canvas.getContext("2d");
-  const strip = new FrameStrip("studio");
-  let film = 0, loading = false;
-  const paint = () => {
-    if (!strip.ready) return;
-    strip.draw(canvas, ctx, film);
-    ambFrom(canvas);
-  };
-  const fit = () => {
-    const r = win.getBoundingClientRect(), dpr = Math.min(2, devicePixelRatio || 1);
-    canvas.width = Math.max(1, Math.round(r.width * dpr)); canvas.height = Math.max(1, Math.round(r.height * dpr));
-    paint();
-  };
-  const load = () => { // the 6 MB pack streams in when the area comes near, never behind the loader; the poster covers until then
-    if (loading) return;
-    loading = true;
-    strip.load().then(() => strip.warm(12)).then(() => { fit(); win.classList.add("ready"); }).catch(() => { loading = false; });
-  };
-  const render = (p) => {
-    film = clamp01((p - 0.03) / 0.9);
-    paint();
-    setStop(film);
-    photos.forEach((ph) => {
-      ph.el.style.setProperty("--in", clamp01((film - ph.at) / 0.1).toFixed(3));
-      ph.el.style.setProperty("--dy", `${((0.5 - p) * ph.drift).toFixed(1)}px`);
-    });
-    win.style.setProperty("--z", (1.04 - p * 0.04).toFixed(4));
-  };
-  render(0);
-  stickyLength($("#spazio"), 340);
-  ScrollTrigger.create({
-    trigger: "#spazio", start: "top top", end: "bottom bottom", scrub: 0.5,
-    onUpdate: (self) => { load(); render(self.progress); }, // a jump straight into the walk loads it too
-    onRefresh: () => fit(),
-  });
-  // created after the pin, so its end includes the pinned length; starts the download three screens ahead
-  ScrollTrigger.create({ trigger: "#spazio", start: "top 300%", end: "bottom top", onToggle: (s) => { if (s.isActive) load(); } });
-  addEventListener("resize", fit);
+  const host = $("#space-photos");
+  host.innerHTML = SPACE.photos.map((p) => `<li><button class="space-photo" type="button" style="--rot:${p.rot}deg" aria-label="${p.t}: ingrandisci">
+      <img src="/space/${p.file}${MOBILE ? "_s" : ""}.webp" alt="${p.alt}" loading="lazy" decoding="async" />
+      <span class="space-zoom" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24"><path d="M14 4h6v6M10 20H4v-6M20 4l-6.5 6.5M4 20l6.5-6.5"/></svg></span></button></li>`).join("");
+  const photos = SPACE.photos.map((p) => ({ photo: `/space/${p.file}_l.webp`, alt: p.alt, title: p.t }));
+  $$(".space-photo", host).forEach((b, i) => b.addEventListener("click", () => lightboxOpen(photos, i)));
+  if (!REDUCED) gsap.from($$(".space-photo", host), { opacity: 0, y: 70, rotation: (i) => SPACE.photos[i].rot * 2, duration: 1.1, stagger: 0.14, ease: "power3.out",
+    scrollTrigger: { trigger: host, start: "top 85%" } });
 }
 
 /* ── Act 3: styles — four layers crossfading in one pinned stage ── */
@@ -550,6 +475,14 @@ function actArchive() {
     if (i !== idx && designsOnly) inkMode = true; // stepping through designs lands on the next design, even after "Sulla pelle"
     idx = (i + list.length) % list.length;
     const w = list[idx];
+    lb.setAttribute("aria-label", w.photo ? "Foto dello studio" : "Lavoro");
+    if (w.photo) { // a photo of the studio (round 15): no style, no skin to switch to, no post
+      fig.classList.remove("ink");
+      img.src = w.photo; img.alt = w.alt;
+      cap.innerHTML = `<b>The Studio Space</b>${w.title} · ${idx + 1}/${list.length}`;
+      ig.hidden = true; mode.hidden = true;
+      return;
+    }
     const ink = inkMode && w.ink && !w.design; // his drawings show the full sheet
     fig.classList.toggle("ink", ink);
     img.src = ink ? `/ink/${w.file}.webp` : `/works/${w.file}.webp`;

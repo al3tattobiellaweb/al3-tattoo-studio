@@ -607,47 +607,40 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .filters button.f-snake { border-color: rgba(255, 51, 70, .6); color: var(--red-hi); }
 .filters button.f-snake[aria-pressed="true"] { background: var(--red); border-color: var(--red); color: #fff; }
 
-/* ══ round 8: The Studio Space (replaces the Vipera band) ══════════════════════════════════════════════
-   copy | the walk, a 9:16 window scrubbed by scroll | his three photos as prints. Behind it, the same frame
-   zoomed, turned and veiled (the studio's post style). Phones: no pin, the walk loops in the window. */
-.space { background: var(--ink-950); }
-.space-stage { position: relative; height: 100svh; overflow: hidden; }
-.space-amb { position: absolute; inset: -14%; width: 128%; height: 128%; object-fit: cover; transform: rotate(-8deg) scale(1.2);
-  pointer-events: none; } /* softened and darkened in the canvas (main.js), no CSS filter */
-.space-veil { position: absolute; inset: 0; pointer-events: none;
-  background: linear-gradient(90deg, rgba(11, 10, 11, .88) 0%, rgba(11, 10, 11, .62) 30%, rgba(11, 10, 11, .22) 55%, rgba(11, 10, 11, .5) 100%), radial-gradient(70% 80% at 55% 50%, transparent, rgba(11, 10, 11, .45)); }
-.space-in { position: relative; z-index: 2; height: 100%; max-width: 1320px; margin: 0 auto; padding: var(--nav-h) var(--gut-l) 24px;
-  display: grid; grid-template-columns: minmax(min-content, 1.12fr) auto minmax(180px, .88fr); align-items: center; gap: clamp(24px, 3vw, 56px); }
-.space-copy .h2 { font-size: clamp(34px, 4vw, 64px); white-space: nowrap; } /* "The Studio / Space": the column is at least as wide as a line */
-.space-line { color: var(--bone-2); font-size: 17px; line-height: 1.5; max-width: 34ch; margin: 18px 0 26px; }
-.space-stops { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
-.space-stops li { display: flex; align-items: center; gap: 12px; font-size: 17px; color: var(--bone-3); transition: color .3s; }
-.space-stops li::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--ink-700); transition: background .3s; flex: none; }
-.space-stops li.on { color: var(--bone); }
-.space-stops li.on::before { background: var(--red-hi); }
-.space-window { position: relative; height: min(80svh, 840px, (100vw - 600px) * 1.6); aspect-ratio: 9 / 16; overflow: hidden; background: #111;
-  border: 1px solid rgba(238, 232, 225, .22); box-shadow: 0 40px 90px -30px rgba(0, 0, 0, .95), 0 0 0 10px rgba(11, 10, 11, .4); }
-.space-window > img, .space-window > canvas, .space-window > video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; transform: scale(var(--z, 1)); }
-.space-window > canvas { opacity: 0; transition: opacity .5s; }
-.space-window.ready > canvas { opacity: 1; }
-.space-tag { position: absolute; left: 12px; bottom: 12px; z-index: 2; padding: 6px 10px; background: rgba(11, 10, 11, .82); font-size: 13px; letter-spacing: .01em; color: var(--bone); }
-.space-photos { position: relative; height: min(80svh, 840px, (100vw - 600px) * 1.6); }
-.space-photo { position: absolute; margin: 0; width: min(64%, 27svh); aspect-ratio: 9 / 16; border: 6px solid #efe9e0; background: #efe9e0;
-  box-shadow: 0 30px 60px -20px rgba(0, 0, 0, .9); opacity: var(--in, 0);
-  transform: translate3d(calc((1 - var(--in, 0)) * 90px), var(--dy, 0px), 0) rotate(calc(var(--rot) * (1.8 - var(--in, 0) * .8))); }
+/* ══ The Studio Space (round 8; round 15: the walk video is gone) ═══════════════════════════════════════
+   the title and its line, then his three photos as prints side by side; a click opens one in the lightbox. A red light
+   from the left and a blue one from the right, the studio's neon. */
+.space { position: relative; overflow: hidden; padding: clamp(110px, 16vh, 180px) 0 clamp(90px, 13vh, 150px);
+  background: radial-gradient(55% 70% at 0% 35%, rgba(211, 23, 43, .13), transparent 70%), radial-gradient(55% 70% at 100% 65%, rgba(59, 124, 255, .11), transparent 70%), var(--ink-950); }
+.space-in { max-width: 1320px; margin: 0 auto; padding: 0 var(--gut-l); }
+.space-copy { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 18px 48px; }
+.space-copy .h2 { font-size: clamp(34px, 4vw, 64px); white-space: nowrap; margin: 0; } /* "The Studio / Space": two lines */
+.space-line { color: var(--bone-2); font-size: 17px; line-height: 1.5; max-width: 36ch; margin: 0 0 6px; }
+.space-photos { list-style: none; margin: clamp(48px, 7vh, 84px) 0 0; padding: 0; display: flex; justify-content: center; align-items: flex-start;
+  gap: clamp(18px, 3vw, 52px); }
+.space-photos li { width: min(30%, calc(64svh * 9 / 16)); }
+.space-photos li:nth-child(2) { margin-top: clamp(18px, 4vh, 44px); }
+.space-photos li:nth-child(3) { margin-top: clamp(6px, 1.5vh, 16px); }
+.space-photo { position: relative; display: block; width: 100%; aspect-ratio: 9 / 16; padding: 0; border: 6px solid #efe9e0; background: #efe9e0;
+  box-shadow: 0 30px 60px -20px rgba(0, 0, 0, .9); rotate: var(--rot); transition: rotate .5s var(--ease), translate .5s var(--ease), box-shadow .5s; }
 .space-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.space-photo.p0 { left: 0; top: 2%; }
-.space-photo.p1 { right: 0; top: 24%; }
-.space-photo.p2 { left: 10%; top: 50%; }
+.space-photo:hover, .space-photo:focus-visible { rotate: 0deg; translate: 0 -8px; box-shadow: 0 44px 80px -24px rgba(0, 0, 0, .95); }
+.space-zoom { position: absolute; right: 8px; bottom: 8px; width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center;
+  background: rgba(11, 10, 11, .82); color: var(--bone); opacity: 0; transition: opacity .3s; }
+.space-zoom .ico { width: 16px; height: 16px; }
+.space-photo:hover .space-zoom, .space-photo:focus-visible .space-zoom { opacity: 1; }
+@media (pointer: coarse) { .space-zoom { opacity: .9; } } /* no hover on touch: the sign that a photo opens stays */
 @media (max-width: 759px) {
-  .space-stage { height: auto; overflow: hidden; padding: 72px 0 64px; }
-  .space-in { display: block; height: auto; padding: 0 var(--gut-l); }
-  .space-line { font-size: 15px; margin: 12px 0 16px; }
-  .space-stops { grid-template-columns: 1fr 1fr; gap: 8px 12px; margin-bottom: 22px; }
-  .space-stops li { font-size: 14px; }
-  .space-window { height: min(68svh, (100vw - var(--gut-l) - var(--gutter)) * 1.78); margin: 0 auto; }
-  .space-photos { height: auto; display: flex; justify-content: center; gap: 10px; margin-top: 22px; }
-  .space-photo { position: relative; inset: auto; width: 27vw; border-width: 4px; opacity: 1; transform: rotate(calc(var(--rot) * .7)); }
+  .space { padding: 72px 0 64px; }
+  .space-copy { display: block; }
+  .space-line { font-size: 15px; margin: 12px 0 0; }
+  .space-photos { margin-top: 26px; gap: 10px; }
+  .space-photos li { width: calc((100% - 20px) / 3); }
+  .space-photos li:nth-child(2) { margin-top: 14px; }
+  .space-photos li:nth-child(3) { margin-top: 5px; }
+  .space-photo { border-width: 4px; }
+  .space-zoom { width: 26px; height: 26px; right: 5px; bottom: 5px; }
+  .space-zoom .ico { width: 13px; height: 13px; }
 }
 
 /* ══ round 8: mobile pass — what phones skip (they stuttered while scrolling) ══════════════════════════ */
@@ -658,8 +651,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 }
 
 /* the pinned acts stick (main.js stickyLength): a sticky stage is held by the compositor, no jump at the edges */
-.process-stage, .ch-master, .space-stage, .vvv-stage { position: sticky; top: 0; }
-@media (max-width: 759px) { .space-stage { position: relative; } } /* phones: the walk is not pinned */
+.process-stage, .ch-master, .vvv-stage { position: sticky; top: 0; }
 @media (max-width: 759px) { /* phones: VVV is not pinned either; a full-width 4:5 frame, the film taller than it to drift */
   .vvv-stage { position: relative; height: auto; aspect-ratio: 4 / 5; }
   .vvv-stage > img, .vvv-stage > video { top: -6%; height: 112%; inset-inline: 0; }

@@ -113,20 +113,14 @@ export const PROCESS = [
   { n: "05", t: "La guarigione", line: "Good habits: la cura dopo la seduta fa metà del tatuaggio.", a: 0.84, b: 1.0, dot: [0.62, 0.78] }, // PLACEHOLDER copy
 ];
 
-// The Studio Space (round 8, replaces the Vipera band): his walk through the studio, scrubbed by scroll on desktop.
-// stops: where the walk is (fraction of the 8.7 s film); photos: the three stills, each comes in at its moment
+// The Studio Space (round 8, replaces the Vipera band): his three photos of the studio, side by side; each opens large
+// (round 15: the walk video and its stops are gone). rot: each print's tilt in degrees
 export const SPACE = {
-  line: "Vinili e oggetti sugli scaffali, piante, neon, le postazioni: lo studio com'è, in un giro solo.", // PLACEHOLDER
-  stops: [ // PLACEHOLDER labels
-    { t: "La parete", at: 0 },
-    { t: "Piante e neon", at: 0.23 },
-    { t: "La postazione", at: 0.6 },
-    { t: "La sala", at: 0.8 },
-  ],
-  photos: [
-    { file: "parete", at: 0.02, rot: -5, drift: 60, alt: "La parete dello studio: una nicchia rossa con un quadro, scaffali di vinili e oggetti da collezione" },
-    { file: "serpente", at: 0.42, rot: 4, drift: -90, alt: "Stampa incorniciata di un serpente in oro su fondo blu notte" },
-    { file: "vinili", at: 0.7, rot: -2, drift: 120, alt: "Parete di vinili incorniciati e, sul banco, la stampa di una tigre" },
+  line: "Vinili e oggetti sugli scaffali, piante, neon, le postazioni: lo studio com'è.", // PLACEHOLDER (round 15: "in un giro solo" went with the walk video)
+  photos: [ // titles: PLACEHOLDER
+    { file: "parete", t: "La parete", rot: -3, alt: "La parete dello studio: una nicchia rossa con un quadro, scaffali di vinili e oggetti da collezione" },
+    { file: "serpente", t: "Il serpente d'oro", rot: 2.5, alt: "Stampa incorniciata di un serpente in oro su fondo blu notte" },
+    { file: "vinili", t: "La parete dei vinili", rot: -1.5, alt: "Parete di vinili incorniciati e, sul banco, la stampa di una tigre" },
   ],
 };
 

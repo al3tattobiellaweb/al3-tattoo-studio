@@ -161,6 +161,23 @@ const imgOk = await ev(`(async () => { const im = document.getElementById('lb-im
 check("lightbox image decoded", imgOk.ok, JSON.stringify(imgOk));
 const broken = await ev(`[...document.images].filter(i => i.complete && i.naturalWidth === 0 && i.getAttribute('loading') !== 'lazy').map(i => i.src)`);
 check("no broken eager images", broken.length === 0, broken.slice(0, 3).join(", "));
+// The Studio Space (round 15): three photos side by side, a real click opens one large; → steps, Esc closes
+await ev(`__lenis.scrollTo(document.getElementById('space-photos').getBoundingClientRect().top + scrollY - innerHeight * 0.2, { immediate: true, force: true })`);
+await sleep(1600);
+const sp = await ev(`(() => { const b = [...document.querySelectorAll('.space-photo')]; const r = b.map((x) => x.getBoundingClientRect());
+  return { n: b.length, row: r.length === 3 && r[0].right <= r[1].left && r[1].right <= r[2].left, at: [r[0].left + r[0].width / 2, r[0].top + r[0].height / 2] }; })()`);
+check("Studio Space: three photos side by side, no video", sp.n === 3 && sp.row && !(await ev(`!!document.querySelector('#spazio video, #spazio canvas')`)), JSON.stringify({ n: sp.n, row: sp.row }));
+for (const type of ["mouseMoved", "mousePressed", "mouseReleased"]) await send("Input.dispatchMouseEvent", { type, x: Math.round(sp.at[0]), y: Math.round(sp.at[1]), button: "left", clickCount: 1 });
+const big = await ev(`(async () => { const lb = document.getElementById('lightbox'), im = document.getElementById('lb-img');
+  await new Promise((r) => setTimeout(r, 300)); const ok = await Promise.race([im.decode().then(() => true, () => false), new Promise((r) => setTimeout(() => r(false), 5000))]);
+  return { open: !lb.hidden, src: im.src.split('/').pop(), w: im.naturalWidth, decoded: ok, cap: document.getElementById('lb-cap').textContent, ig: document.getElementById('lb-ig').hidden, mode: document.getElementById('lb-mode').hidden }; })()`);
+await send("Input.dispatchKeyEvent", { type: "keyDown", key: "ArrowRight", code: "ArrowRight", windowsVirtualKeyCode: 39 });
+await send("Input.dispatchKeyEvent", { type: "keyUp", key: "ArrowRight", code: "ArrowRight", windowsVirtualKeyCode: 39 });
+await sleep(300);
+const big2 = await ev(`document.getElementById('lb-cap').textContent`);
+await send("Input.dispatchKeyEvent", { type: "keyDown", key: "Escape", code: "Escape", windowsVirtualKeyCode: 27 });
+await sleep(300);
+check("Studio Space: a click opens the photo large, → steps, Esc closes", big.open && big.src === "parete_l.webp" && big.decoded && big.w >= 1000 && /1\/3/.test(big.cap) && big.ig && big.mode && /2\/3/.test(big2) && (await ev(`document.getElementById('lightbox').hidden`)), JSON.stringify({ ...big, next: big2 }));
 // the menu (round 10): below 1100 px it holds the sections; a link closes it and lands there, and the page scrolls again
 if (VP[0] <= 1100) {
   await ev(`__lenis.scrollTo(0, { immediate: true, force: true })`);
