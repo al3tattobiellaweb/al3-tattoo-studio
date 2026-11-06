@@ -401,19 +401,23 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   transform: scale(var(--z, 1)); }
 .vvv-stage > canvas { opacity: 0; transition: opacity .5s; }
 .vvv-stage.ready > canvas { opacity: 1; }
+/* the copy over the film (round 22, owner: "bring this text over the bust video on the left side"): a veil darkens the
+   left edge so the words read over the studio wall, the torso stays clear on the right */
+.vvv-veil { position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(90deg, rgba(11, 10, 11, .86) 0%, rgba(11, 10, 11, .62) 24%, rgba(11, 10, 11, .18) 42%, rgba(11, 10, 11, 0) 54%); }
+.vvv-copy { position: absolute; z-index: 2; left: max(var(--gut-l), 4.5vw); top: 50%; translate: 0 -46%;
+  width: min(26vw, 440px); } /* from the screen's left edge, not the 1320 column: the torso is centred on the screen, not the column */
+.vvv-copy .h2.latin { font-size: clamp(32px, 3.8vw, 64px); text-shadow: 0 2px 22px rgba(0, 0, 0, .55); } /* three lines in the column */
+.vvv-copy .script-line { margin-top: 10px; font-size: clamp(22px, 2.05vw, 34px); text-shadow: 0 1px 12px rgba(0, 0, 0, .7); } /* one line in the column */
+.vvv-copy .body { margin: 20px 0 0; max-width: 34ch; color: var(--bone); text-shadow: 0 1px 12px rgba(0, 0, 0, .75); }
 .vvv-shade { position: absolute; inset: 0; pointer-events: none; /* from the act above, into the copy below */
   background: linear-gradient(180deg, var(--ink-950) 0%, rgba(11, 10, 11, 0) 14%, rgba(11, 10, 11, 0) 64%, rgba(11, 10, 11, .55) 82%, var(--ink-950) 99%); } /* from the process act above (round 18) */
-.studio-copy { position: relative; z-index: 2; padding-top: clamp(28px, 5vh, 56px); display: grid; grid-template-columns: minmax(min-content, 1fr);
-  gap: clamp(32px, 6vw, 110px); align-items: end; }
-.studio-lead .body { max-width: 52ch; }
-@media (min-width: 760px) { .studio-lead .h2 { white-space: nowrap; } } /* "Virtus virescit" stays one line: the column grows to it */
 .studio-facts .info { margin-top: 0; }
-/* the studio at the bottom (round 19): the four facts in a row, the two buttons, then the people */
+/* the studio at the bottom (round 19; round 20: the people only, the facts and buttons removed) */
 .contact { padding: clamp(100px, 14vh, 160px) 0 clamp(70px, 10vh, 120px); }
-.contact-facts .info { grid-template-columns: repeat(4, minmax(0, 1fr)); margin: 0 0 30px; }
-@media (max-width: 900px) { .contact-facts .info { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.contact .people { margin-top: 0; }
+.contact .archive-cta { margin-top: clamp(72px, 11vh, 130px); } /* the archive's call to action, at the end of the page (round 21) */
 .h2.latin { font-size: clamp(30px, 4.6vw, 70px); } /* "VIRTUS VIRESCIT" is 9× its size wide: two lines in the copy column */
-.studio-copy .body { margin: 26px 0 0; }
 .info { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px 28px; margin: 34px 0; }
 .info dt { font-size: 15px; color: var(--bone-3); margin-bottom: 4px; }
 .info dd { margin: 0; font-size: 17px; }
@@ -532,7 +536,6 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 
   .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .tile .cap { opacity: 1; transform: none; padding: 30px 10px 8px; font-size: 13px; }
-  .studio-copy { grid-template-columns: 1fr; gap: 30px; padding-top: 22px; }
   .info { gap: 18px 16px; }
   .h2.latin { font-size: 34px; }
   .people { grid-template-columns: minmax(0, 1fr); grid-template-areas: "lead" "quote" "pair"; row-gap: 34px; }
@@ -663,6 +666,12 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   .vvv-stage > img, .vvv-stage > canvas { inset: auto 0; top: calc(50% - 100vw * 2 / 3); height: calc(100vw * 4 / 3); }
   .vvv-shade { background: linear-gradient(180deg, var(--ink-950) 0%, var(--ink-950) calc(50% - 100vw * 2 / 3), rgba(11, 10, 11, 0) calc(50% - 100vw * 2 / 3 + 70px),
     rgba(11, 10, 11, 0) calc(50% + 100vw * 2 / 3 - 110px), var(--ink-950) calc(50% + 100vw * 2 / 3)); }
+  /* phones: the film fills the width, so the copy rides over its lower part, on a veil rising from the bottom */
+  .vvv-veil { background: linear-gradient(0deg, rgba(11, 10, 11, .94) 0%, rgba(11, 10, 11, .78) 26%, rgba(11, 10, 11, .3) 44%, rgba(11, 10, 11, 0) 56%); }
+  .vvv-copy { left: var(--gut-l); right: var(--gutter); width: auto; top: auto; bottom: calc(22px + env(safe-area-inset-bottom)); translate: none; }
+  .vvv-copy .h2.latin { font-size: 30px; }
+  .vvv-copy .script-line { font-size: 22px; margin-top: 6px; }
+  .vvv-copy .body { font-size: 15px; margin-top: 12px; line-height: 1.5; }
 }
 
 /* ══ round 8: Partita IVA + privacy notice ═════════════════════════════════════════════════════════════ */

@@ -182,13 +182,13 @@
           <img class="vvv-poster" src="/studio/vvv-poster.webp" alt="" loading="lazy" /><!-- lazy: phones swap it for their 3:4 poster before it loads -->
           <canvas id="vvv-canvas" role="img" aria-label="VVV: il busto bianco con le crepe d'oro si spezza tra il neon rosso e quello blu e si ricompone"></canvas>
           <div class="vvv-shade" aria-hidden="true"></div>
-        </div>
-      </div>
-      <div class="wrap studio-copy">
-        <div class="studio-lead">
-          <h2 class="h2 ink-head latin">Virtus virescit<br />vulnere</h2>
-          <p class="script-line">La virtù cresce dalla ferita.</p>
-          <p class="body">Le sculture dello studio le ha fatte Zippo con le sue mani, crepa dopo crepa: <b>VVV</b>, un progetto fai-da-te raccontato in tre reel. Un tatuaggio è una ferita che diventa un segno. Qui dentro, anche i muri lo sanno.</p><!-- PLACEHOLDER copy -->
+          <div class="vvv-veil" aria-hidden="true"></div>
+          <!-- round 22 (owner: "bring this text over the bust video on the left side"): the copy rides in the pinned stage -->
+          <div class="vvv-copy">
+            <h2 class="h2 ink-head latin">Virtus virescit<br />vulnere</h2>
+            <p class="script-line">La virtù cresce dalla ferita.</p>
+            <p class="body">Le sculture dello studio le ha fatte Zippo con le sue mani, crepa dopo crepa: <b>VVV</b>, un progetto fai-da-te raccontato in tre reel. Un tatuaggio è una ferita che diventa un segno. Qui dentro, anche i muri lo sanno.</p><!-- PLACEHOLDER copy -->
+          </div>
         </div>
       </div>
     </section>
@@ -227,11 +227,6 @@
         <div class="filters" id="filters" role="toolbar" aria-label="Filtra per stile"></div>
         <ul class="grid" id="grid"></ul>
         <div class="more-wrap"><button class="btn btn-ghost" id="more-btn" type="button">Mostra altri</button></div>
-        <div class="archive-cta">
-          <p class="script-line">Ti sei rivisto in un lavoro?</p>
-          <a class="btn btn-primary wa-link" id="cta-btn" href="#" target="_blank" rel="noopener"><span class="pulse" aria-hidden="true"></span>Scrivimi su WhatsApp</a>
-          <a class="btn btn-ghost" href="https://www.instagram.com/sgt.zippo/" target="_blank" rel="noopener">Altri lavori su Instagram</a>
-        </div>
       </div>
     </section>
 
@@ -245,25 +240,10 @@
       </div>
     </section>
 
-    <!-- Act 5 — Lo studio (round 19, owner: moved here from the VVV act, "just above" the footer): where, when, open now,
-         what, the two buttons, then the people -->
+    <!-- Act 5 — Lo studio (round 19, owner: moved here from the VVV act, "just above" the footer; round 20: the address,
+         hours, status and the two buttons removed, owner: "Remove this"): the people -->
     <section class="act contact" id="studio" aria-labelledby="studio-title">
-      <h2 class="sr-only" id="studio-title">Lo studio: dove, quando, chi</h2>
-      <div class="wrap contact-facts">
-        <div class="studio-facts">
-          <dl class="info">
-            <div><dt>Dove</dt><dd>Via Mazzini 10/c<br />Biella</dd></div>
-            <div><dt>Quando</dt><dd>Dal martedì al sabato<br />14:30 – 19:00</dd></div>
-            <div><dt>Adesso</dt><dd><span class="status" data-status><i></i><span>—</span></span></dd></div>
-            <div><dt>Cosa</dt><dd>Tattoo · Piercing<br />Gioielli</dd></div>
-          </dl>
-          <div class="studio-actions">
-            <a class="btn btn-primary wa-link" href="#" target="_blank" rel="noopener">Scrivimi su WhatsApp</a>
-            <a class="btn btn-ghost" href="https://maps.app.goo.gl/fw5NLr9mtjjSzXzt7" target="_blank" rel="noopener">Apri in Maps</a>
-          </div>
-        </div>
-      </div>
-
+      <h2 class="sr-only" id="studio-title">Lo studio: le persone</h2>
       <!-- the people (round 9, taste pass): Zippo large with his line set big; the boss and the jewel as two tilted prints -->
       <div class="wrap people">
         <div class="print print-lead"><img src="/studio/zippo-at-work.webp" alt="Sgt. Zippo al lavoro con la macchinetta" loading="lazy" /></div>
@@ -287,6 +267,13 @@
             </figcaption>
           </figure>
         </div>
+      </div>
+
+      <!-- round 21 (owner: "move these to the bottom before the footer"): the archive's call to action closes the page -->
+      <div class="wrap archive-cta">
+        <p class="script-line">Ti sei rivisto in un lavoro?</p>
+        <a class="btn btn-primary wa-link" id="cta-btn" href="#" target="_blank" rel="noopener"><span class="pulse" aria-hidden="true"></span>Scrivimi su WhatsApp</a>
+        <a class="btn btn-ghost" href="https://www.instagram.com/sgt.zippo/" target="_blank" rel="noopener">Altri lavori su Instagram</a>
       </div>
     </section>
 
@@ -328,7 +315,7 @@
         <li><a href="#stili">Stili</a></li>
         <li><a href="#archivio">Archivio</a></li>
         <li id="menu-walkin" hidden><a href="#walkin">Walk-in 31/10</a></li>
-        <li><a href="#studio">Studio e orari</a></li>
+        <li><a href="#studio">Lo studio</a></li>
       </ul>
     </nav>
     <div class="menu-foot">
