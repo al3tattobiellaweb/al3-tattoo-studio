@@ -1,0 +1,45 @@
+# AL3 Tattoo Studio · www.al3tattoobiella.com
+# Search engines and the assistants that look things up for a person: welcome.
+# Crawlers that collect his work to train AI models: not here (Sgt. Zippo's tattoos are his own; see his March 2026 reel).
+# Blocking Google-Extended does not remove the site from Google Search or AI Overviews; those use Googlebot.
+
+User-agent: *
+Allow: /
+
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: Applebot-Extended
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: Meta-ExternalAgent
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+Sitemap: https://www.al3tattoobiella.com/sitemap.xml
