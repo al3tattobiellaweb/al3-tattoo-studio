@@ -17,7 +17,7 @@
   --f-body: "Archivo", system-ui, sans-serif;
   --f-script: "Pinyon Script", cursive;
   --gutter: clamp(16px, 4vw, 56px);
-  --rail: 64px; /* the viper down the left edge (vrail.js) */
+  --rail: 64px; /* the neon rail down the left edge (vrail.js) */
   --rail-clear: calc(var(--rail) + 14px); /* pictures and copy start right of it (owner, round 8: "so that the viper doesnt go through them") */
   --gut-l: max(var(--gutter), calc(var(--rail-clear) - max(0px, (100vw - 1320px) / 2))); /* left padding of a centred 1320 px column */
   --gut-r: max(var(--gutter), var(--rail-clear)); /* right edge of full-width copy: mirrors the rail's clearance (round 9) */
@@ -106,16 +106,16 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .loader.split .crack, .loader.split .loader-line, .loader.split .loader-head, .loader.split .loader-pct { opacity: 0; transition: opacity .35s; }
 .loader.gone { display: none; }
 
-/* ── chrome: grain, viper rail, cursor, nav ── */
+/* ── chrome: grain, neon rail, cursor, nav ── */
 .grain {
   position: fixed; inset: -50%; z-index: 90; pointer-events: none; opacity: .07; mix-blend-mode: overlay;
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
   animation: grain 1s steps(6) infinite;
 }
 @keyframes grain { 0% { transform: translate(0, 0); } 33% { transform: translate(-3%, 2%); } 66% { transform: translate(2%, -3%); } 100% { transform: translate(-1%, 1%); } }
-/* the viper rail down the left edge (scroll progress + section links; src/vrail.js) */
+/* the neon rail down the left edge (scroll progress + section links; src/vrail.js) */
 .vrail { position: fixed; left: 0; top: 0; bottom: 0; width: var(--rail); z-index: 60; pointer-events: none; }
-.vrail-cv { position: absolute; inset: 0; width: 100%; height: 100%; display: block; filter: drop-shadow(0 2px 4px rgba(0, 0, 0, .6)); }
+.vrail-cv { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
 .vrail-marks { list-style: none; margin: 0; padding: 0; }
 .vrail-mark { position: absolute; left: 0; height: 30px; margin-top: -15px; }
 .vrail-mark button { pointer-events: auto; position: relative; display: block; width: 50px; height: 30px; }
@@ -127,7 +127,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .vrail-mark.on .vrail-label { color: var(--red-hi); }
 @media (max-width: 759px) {
   .vrail { width: 22px; } /* --rail follows in the phone :root below */
-  .vrail-marks { display: none; } /* phones: ticks only, the edge stays free for the thumb; the menu holds the sections */
+  .vrail-marks { display: none; } /* phones: stations only, the edge stays free for the thumb; the menu holds the sections */
 }
 
 .cursor { position: fixed; left: 0; top: 0; z-index: 130; /* above everything, the lightbox (110) included: the system pointer is hidden */ pointer-events: none; display: none; opacity: 0; transition: opacity .3s; }
@@ -389,16 +389,23 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .walkin-text { margin: 0 auto; color: var(--bone-2); max-width: 52ch; }
 
 /* ── Act 5: studio ─────────────────────────────────────────── */
-.studio { padding: clamp(110px, 16vh, 180px) 0 clamp(70px, 10vh, 120px); }
-.studio-grid { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: clamp(32px, 6vw, 110px); align-items: center; }
-.vvv { position: relative; aspect-ratio: 4 / 5; }
-.vvv-card { position: absolute; margin: 0; aspect-ratio: 9 / 16; overflow: hidden; box-shadow: 0 30px 70px -25px rgba(0, 0, 0, .9); }
-.vvv-card img { width: 100%; height: 100%; object-fit: cover; }
-.vvv-1 { width: 46%; left: 0; top: 4%; z-index: 2; box-shadow: 0 30px 70px -25px rgba(0, 0, 0, .9), -30px 0 80px -20px rgba(211, 23, 43, .45); }
-.vvv-2 { width: 40%; left: 33%; top: 22%; z-index: 3; }
-.vvv-3 { width: 44%; right: 0; top: 0; z-index: 1; box-shadow: 0 30px 70px -25px rgba(0, 0, 0, .9), 30px 0 80px -20px rgba(59, 124, 255, .4); }
-.vvv-crack { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 4; pointer-events: none; overflow: visible; }
-.vvv-crack path { fill: none; stroke: var(--gold); stroke-width: 1.6; vector-effect: non-scaling-stroke; filter: drop-shadow(0 0 4px rgba(200, 161, 90, .8)); stroke-dasharray: 100; stroke-dashoffset: 100; }
+/* VVV (round 14, owner: "the video takes the full page width"): his kintsugi torso bursts and mends as you scroll, full
+   bleed in a pinned stage that fades into the ground at its foot; the copy follows below it, never over it (DESIGN.md:
+   no picture under a title). Phones: no pin, the film loops in a 4:5 frame and drifts against the page. */
+.studio { padding: 0 0 clamp(70px, 10vh, 120px); }
+.vvv-film { position: relative; }
+.vvv-stage { height: 100svh; overflow: hidden; background: var(--ink-950); }
+.vvv-stage > img, .vvv-stage > canvas, .vvv-stage > video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block;
+  transform: scale(var(--z, 1)); }
+.vvv-stage > canvas { opacity: 0; transition: opacity .5s; }
+.vvv-stage.ready > canvas { opacity: 1; }
+.vvv-shade { position: absolute; inset: 0; pointer-events: none; /* from the archive above, into the copy below */
+  background: linear-gradient(180deg, var(--ink-900) 0%, rgba(18, 16, 18, 0) 14%, rgba(11, 10, 11, 0) 64%, rgba(11, 10, 11, .55) 82%, var(--ink-950) 99%); }
+.studio-copy { position: relative; z-index: 2; padding-top: clamp(28px, 5vh, 56px); display: grid; grid-template-columns: minmax(min-content, 1.1fr) minmax(0, .9fr);
+  gap: clamp(32px, 6vw, 110px); align-items: end; }
+.studio-lead .body { max-width: 52ch; }
+@media (min-width: 760px) { .studio-lead .h2 { white-space: nowrap; } } /* "Virtus virescit" stays one line: the column grows to it */
+.studio-facts .info { margin-top: 0; }
 .h2.latin { font-size: clamp(30px, 4.6vw, 70px); } /* "VIRTUS VIRESCIT" is 9× its size wide: two lines in the copy column */
 .studio-copy .body { margin: 26px 0 0; }
 .info { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px 28px; margin: 34px 0; }
@@ -519,8 +526,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 
   .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .tile .cap { opacity: 1; transform: none; padding: 30px 10px 8px; font-size: 13px; }
-  .studio-grid { grid-template-columns: 1fr; }
-  .vvv { max-width: 520px; width: 100%; margin: 0 auto; }
+  .studio-copy { grid-template-columns: 1fr; gap: 30px; padding-top: 22px; }
   .info { gap: 18px 16px; }
   .h2.latin { font-size: 34px; }
   .people { grid-template-columns: minmax(0, 1fr); grid-template-areas: "lead" "quote" "pair"; row-gap: 34px; }
@@ -588,11 +594,14 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .stencil-h .c.on { color: var(--bone); -webkit-text-stroke-color: rgba(150, 118, 255, 0); text-shadow: 0 0 16px rgba(255, 51, 70, .95), 0 0 3px rgba(255, 51, 70, 1); }
 .stencil-h .c.on.cool { text-shadow: none; }
 
-/* archive tiles: a needle pass sweeps the photo on hover */
+/* archive tiles: a neon pass sweeps the photo on hover, red at the top turning blue at the bottom (owner, round 14) */
+@property --t { syntax: "<number>"; inherits: false; initial-value: 0; } /* how far down the sweep is, 0 … 1 */
 .tile::before { content: ""; position: absolute; left: 0; right: 0; top: -4%; height: 2px; z-index: 2; opacity: 0; pointer-events: none;
-  background: linear-gradient(90deg, transparent, var(--red-hi) 30%, #fff 50%, var(--red-hi) 70%, transparent); box-shadow: 0 0 14px 2px rgba(255, 51, 70, .7); }
+  --neon: color-mix(in oklch, #ff3346, #3b7cff calc(var(--t) * 100%)); /* oklch: through neon violet, not a muddy mauve */
+  background: linear-gradient(90deg, transparent, var(--neon) 30%, #fff 50%, var(--neon) 70%, transparent);
+  box-shadow: 0 0 14px 2px color-mix(in srgb, var(--neon) 70%, transparent), 0 0 40px 6px color-mix(in srgb, var(--neon) 28%, transparent); }
 .tile:hover::before { opacity: 1; animation: sweep 1.15s cubic-bezier(.5, 0, .5, 1) infinite; }
-@keyframes sweep { from { top: -2%; } to { top: 101%; } }
+@keyframes sweep { from { top: -2%; --t: 0; } to { top: 101%; --t: 1; } } /* one segment: the colour follows the line */
 
 
 @media (max-width: 759px) {
@@ -669,8 +678,13 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 }
 
 /* the pinned acts stick (main.js stickyLength): a sticky stage is held by the compositor, no jump at the edges */
-.process-stage, .ch-master, .space-stage { position: sticky; top: 0; }
+.process-stage, .ch-master, .space-stage, .vvv-stage { position: sticky; top: 0; }
 @media (max-width: 759px) { .space-stage { position: relative; } } /* phones: the walk is not pinned */
+@media (max-width: 759px) { /* phones: VVV is not pinned either; a full-width 4:5 frame, the film taller than it to drift */
+  .vvv-stage { position: relative; height: auto; aspect-ratio: 4 / 5; }
+  .vvv-stage > img, .vvv-stage > video { top: -6%; height: 112%; inset-inline: 0; }
+  .vvv-shade { background: linear-gradient(180deg, var(--ink-900) 0%, rgba(18, 16, 18, 0) 12%, rgba(11, 10, 11, 0) 66%, rgba(11, 10, 11, .7) 86%, var(--ink-950) 100%); }
+}
 
 /* ══ round 8: Partita IVA + privacy notice ═════════════════════════════════════════════════════════════ */
 .todo { background: #ffd23f; color: #111; padding: 0 4px; font-weight: 700; } /* a missing owner detail: cannot ship (verify.mjs) */

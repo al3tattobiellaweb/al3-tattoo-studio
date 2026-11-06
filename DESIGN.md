@@ -151,7 +151,7 @@ This is a dark studio at night. The ground is warm ink, and everything worth see
 
 The system is built to be seen at scroll, one act at a time. Each act holds one big thing on screen, and the page is long because the work is the show. Controls stay small, flat and quiet so that nothing competes with a tattoo. The drama belongs to the pictures and the motion, and the interface steps back.
 
-Confirmed rejections: photo cards in the hero (designs fly free, with no arm, body or background), the red drip band under the hero, a tremor on the process plate, the Art Wall (removed in round 13), and a viper that follows the cursor.
+Confirmed rejections: photo cards in the hero (designs fly free, with no arm, body or background), the red drip band under the hero, a tremor on the process plate, the Art Wall (removed in round 13), a viper that follows the cursor, the viper rail itself (a neon tube since round 14), and cutting a work out of its photo (round 14: the cut-outs read as mutilated; his photos are shown whole).
 
 **Key Characteristics:**
 - Warm ink ground, never pure black, with bone text.
@@ -165,7 +165,7 @@ Confirmed rejections: photo cards in the hero (designs fly free, with no arm, bo
 One warm ink family, one bone family, one red for action, and two atmospheric colours taken from the studio's own neon and kintsugi.
 
 ### Primary
-- **Logo Red** (#d3172b): the AL3 disc's red. Fills the WhatsApp buttons, and marks passed points on the viper rail and the progress bar. White text on it passes 4.5:1.
+- **Logo Red** (#d3172b): the AL3 disc's red. Fills the WhatsApp buttons and the progress bar. White text on it passes 4.5:1.
 - **Pressed Red** (#a8101f): the hover state of Logo Red. It goes darker, never brighter, so white text stays readable.
 - **Hot Neon Red** (#ff3346): small accents only: the style line under a Stili title, script lines, active stops, focus rings, the needle.
 
@@ -173,12 +173,12 @@ One warm ink family, one bone family, one red for action, and two atmospheric co
 - **Neon Blue** (#3b7cff): the blue neon tube and its light. Atmosphere only.
 
 ### Tertiary
-- **Kintsugi Gold** (#c8a15a): the gold of the VVV cracks, in the loader's crack and the crack over the sculptures. Atmosphere only.
+- **Kintsugi Gold** (#c8a15a): the gold of the VVV cracks, in the loader's crack; the VVV film carries its own. Atmosphere only.
 
 ### Neutral
 - **Ink 950** (#0b0a0b): the page ground.
 - **Ink 900** (#121012): the tone step for the archive and the footer.
-- **Ink 800** (#1b181a): the ground under archive tiles while they load, and the viper rail's name tags.
+- **Ink 800** (#1b181a): the ground under archive tiles while they load, and the neon rail's name tags.
 - **Ink 700** (#2a2628): every quiet control at rest.
 - **Ink 600** (#3b3538): the hover state of quiet controls.
 - **Ink 500** (#5a5357): the closed-status dot.
@@ -226,9 +226,9 @@ One warm ink family, one bone family, one red for action, and two atmospheric co
 
 The page is a sequence of full-screen acts. Each pinned act is a sticky stage inside a section one screen tall plus its scroll length, and heights use svh, never dvh. Text sections sit in a centred column of 1320px at most.
 
-The left edge belongs to the viper rail: 64px wide on desktop, 22px on phones. Pictures and copy start at least 78px in (28px on phones), and the right edge mirrors that clearance. The fixed nav is 64px tall (58px on phones) and is always clear of act content.
+The left edge belongs to the neon rail: 64px wide on desktop, 22px on phones. Pictures and copy start at least 78px in (28px on phones), and the right edge mirrors that clearance. The fixed nav is 64px tall (58px on phones) and is always clear of act content.
 
-Each act has its own composition, with copy and picture never overlapping. A picture starts past the end of its title's column, or passes behind a solid panel.
+Each act has its own composition, with copy and picture never overlapping. VVV keeps to it at full bleed: the film fades into the ground at its foot and the copy starts below it. A picture starts past the end of its title's column, or passes behind a solid panel.
 
 Breakpoints: below 1100px the nav links go and the archive drops from five columns to four; below 760px the layout becomes the phone composition, with two archive columns and the Studio Space unpinned; below 420px the brand text goes. On phones and coarse pointers, grain, nav blur, heavy filters and the badge's colour split are removed to keep scrolling smooth.
 
@@ -239,7 +239,6 @@ Lit, not lifted. Depth comes from neon on a dark ground and from real 3D, such a
 ### Shadow Vocabulary
 - **Floating sheet** (`box-shadow: 0 40px 80px -30px rgba(0, 0, 0, .9)`): his drawings in Stili, which hang in the air.
 - **Print** (`box-shadow: 0 30px 60px -20px rgba(0, 0, 0, .9)`): the photos landing in The Studio Space.
-- **Neon spill** (`box-shadow: 0 30px 70px -25px rgba(0, 0, 0, .9), -30px 0 80px -20px rgba(211, 23, 43, .45)`): the sculpture photos, with blue on the opposite side.
 - **Neon tube** (`box-shadow: 0 0 8px 2px var(--red-hi), 0 0 40px 10px rgba(211, 23, 43, .65), 0 0 160px 60px rgba(211, 23, 43, .25)`): the hero's two tubes, the same way in blue.
 - **Dialog** (`box-shadow: 0 40px 100px rgba(0, 0, 0, .8)`): the privacy notice.
 
@@ -267,7 +266,7 @@ Quiet tools, loud work: controls are flat, solid and simple, so the tattoos stay
 
 ### Cards / Containers
 There are no cards. Work is held by three forms:
-- **Archive tile:** 4:5 and square-cornered on Ink 800, slightly muted at rest. On hover it takes full colour, scales to 1.05, and a needle of light sweeps it as the caption rises.
+- **Archive tile:** 4:5 and square-cornered on Ink 800, slightly muted at rest. It shows his photo whole, as posted. On hover it takes full colour, scales to 1.05, and a neon line sweeps it as the caption rises: Hot Neon Red at the top, turning through violet to blue at the bottom (mixed in OKLCH), its colour locked to its height.
 - **Print:** a photo with a Print Paper border (6px, 4px on phones), tilted by a few degrees, like the studio's own prints.
 - **Sheet:** his drawing on white, at its own 764:1080 proportion.
 
@@ -283,8 +282,11 @@ The studio's mark as the title, inked in by the needle, then alive. Two layers f
 ### Flying Designs
 Die-cut designs drift past the camera with a neon aura, red on the left and blue on the right. Clicking one opens it in the lightbox, which browses designs only.
 
-### Viper Rail
-A drawn viper down the left edge, after Sgt. Zippo's painted skateboard viper, with no head: one tip stays at the top and the other marks the scroll position, both tapering alike. A glossy black body (16px, 9px on phones) with hard white highlights, chunky bone slabs stacked down the side facing the page (pale on top, grey toward the tail, standing out past the outline, a smaller row at their roots), and a thin Logo Red rim where the outline meets the dark ground. Its section dots turn Logo Red once passed; on desktop each names its section on hover and scrolls there.
+### Neon Rail
+One neon tube down the left edge (64px rail, the tube at 20px; 22px rail and 9px on phones), Hot Neon Red at the top through violet to blue at the bottom, like the studio's two neons. It is a light, not a control: the whole tube glows faintly, the stretch already scrolled through burns brighter, and where you are now it flares white-hot along the tube with a halo in its own colour at that height. The sections are stations on the tube, Bone ahead and lit in the tube's colour once passed, ringed while you are in that section; on desktop each names its section on hover (Ink 800 tag, Hot Neon Red for the current one) and scrolls there. A slow hum and a rare stutter; with reduced motion it holds still and only follows the scroll.
+
+### VVV Film
+His kintsugi torso, the owner's explode-recompose film, full bleed in a pinned stage: as you scroll it glows, bursts in red and blue, and mends, while the camera settles from 1.07 to 1. Ink 900 fades it in at the top from the archive and Ink 950 takes its foot, so the copy below never sits on the picture. Phones: a full-width 4:5 frame that loops while on screen and drifts a few percent against the page.
 
 ### Machine Cursor
 On fine pointers the cursor is a coil tattoo machine with the needle tip on the pointer, leaving ink splatter on click.
@@ -317,4 +319,5 @@ A near-black veil with a light blur. Designs sit on a soft red bloom; tattoos ca
 - **Don't** use pure black (#000) for a surface.
 - **Don't** set new text below 13px.
 - **Don't** add a blood band under the hero, a tremor on the process plate, or a viper that follows the cursor.
+- **Don't** cut a work out of its photo or replace its background: his photos are shown whole.
 - **Don't** add numbering such as 01 / 05 to steps or sections.

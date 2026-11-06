@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // Bake one film (mp4/mov) into a scroll-scrub frame strip: <name>.pack + <name>.json
 //
-//   node bake.mjs --src film.mp4 --name ch01 [--width 1280] [--fps 18] [--q 4] [--out public/frames]
+//   node bake.mjs --src film.mp4 --name ch01 [--width 1280] [--fps 18] [--q 4] [--out public/frames] [--webp 70]
 //
 // .pack  = concatenated JPEGs; .json = { frames, width, height, offsets[] } with a
 // sentinel end offset, so frame i is bytes offsets[i]..offsets[i+1]. One request
@@ -12,6 +12,8 @@
 //   width 1280    desktop canvases cover-fit; 1600 only if the subject is small
 //   q 4           ffmpeg -qscale:v (2 = best … 7 = smallest). Aim ≤ 12 MB per pack;
 //                 a bright, detailed scene can hit 14 MB at q4 — raise q to 5-6.
+//   --webp N     WebP frames at quality N instead of JPEG (busy films: ~30 % lighter at the same look;
+//                the .json carries type "image/webp" and FrameStrip slices them as such)
 // Requires ffmpeg on PATH or FFMPEG env var pointing at the binary.
 
 import { spawnSync } from "node:child_process";
@@ -23,6 +25,7 @@ const arg = (k, d) => { const i = process.argv.indexOf(`--${k}`); return i > -1 
 const SRC = arg("src"), NAME = arg("name");
 if (!SRC || !NAME) { console.error("usage: bake.mjs --src film.mp4 --name key [--width 1280] [--fps 18] [--q 4] [--out dir]"); process.exit(1); }
 const WIDTH = +arg("width", 1280), FPS = +arg("fps", 18), Q = +arg("q", 4), OUT = arg("out", ".");
+const WEBP = arg("webp", null), EXT = WEBP ? "webp" : "jpg";
 const FF = process.env.FFMPEG || "ffmpeg";
 
 const tmp = join(tmpdir(), `bake_${NAME}`);
@@ -30,10 +33,11 @@ rmSync(tmp, { recursive: true, force: true });
 mkdirSync(tmp, { recursive: true });
 mkdirSync(OUT, { recursive: true });
 
-const r = spawnSync(FF, ["-y", "-i", SRC, "-vf", `fps=${FPS},scale=${WIDTH}:-2`, "-qscale:v", String(Q), join(tmp, "f_%04d.jpg")], { stdio: ["ignore", "ignore", "pipe"] });
+const enc = WEBP ? ["-c:v", "libwebp", "-quality", String(WEBP), "-compression_level", "4"] : ["-qscale:v", String(Q)];
+const r = spawnSync(FF, ["-y", "-i", SRC, "-an", "-vf", `fps=${FPS},scale=${WIDTH}:-2`, ...enc, join(tmp, `f_%04d.${EXT}`)], { stdio: ["ignore", "ignore", "pipe"] });
 if (r.status !== 0) { console.error(r.stderr?.toString().split("\n").slice(-6).join("\n")); process.exit(1); }
 
-const frames = readdirSync(tmp).filter((f) => f.endsWith(".jpg")).sort();
+const frames = readdirSync(tmp).filter((f) => f.endsWith(`.${EXT}`)).sort();
 if (!frames.length) { console.error("no frames extracted"); process.exit(1); }
 
 // JPEG dimensions from the SOF marker of the first frame (no image library needed)
@@ -57,9 +61,17 @@ for (const f of frames) {
   offsets.push(pos); chunks.push(b); pos += b.length;
 }
 offsets.push(pos);
-const { width, height } = jpegSize(chunks[0]);
+// WebP: the VP8X / VP8 / VP8L header has the canvas size
+function webpSize(buf) {
+  const k = buf.toString("ascii", 12, 16);
+  if (k === "VP8X") return { width: 1 + buf.readUIntLE(24, 3), height: 1 + buf.readUIntLE(27, 3) };
+  if (k === "VP8 ") return { width: buf.readUInt16LE(26) & 0x3fff, height: buf.readUInt16LE(28) & 0x3fff };
+  const b = buf.readUInt32LE(21);
+  return { width: 1 + (b & 0x3fff), height: 1 + ((b >> 14) & 0x3fff) };
+}
+const { width, height } = WEBP ? webpSize(chunks[0]) : jpegSize(chunks[0]);
 writeFileSync(join(OUT, `${NAME}.pack`), Buffer.concat(chunks));
-writeFileSync(join(OUT, `${NAME}.json`), JSON.stringify({ frames: frames.length, width, height, offsets }));
+writeFileSync(join(OUT, `${NAME}.json`), JSON.stringify({ frames: frames.length, width, height, ...(WEBP ? { type: "image/webp" } : {}), offsets }));
 const mb = (statSync(join(OUT, `${NAME}.pack`)).size / 1048576).toFixed(2);
 console.log(`${NAME}: ${frames.length} frames ${width}x${height} -> ${mb} MB`);
 if (mb > 14) console.warn(`  ${NAME} is heavy — rebake with --q ${Q + 1} or a smaller --width`);

@@ -1,4 +1,7 @@
-"""Every work on skin in the studio's own post style (owner, round 8, with two of his posts as the standard):
+"""RETIRED in round 14 (owner: the cut-outs "look like the subjects are mutilated"). The archive shows his original
+photos again: scripts/works-originals.py. Kept for the record only; do not run it.
+
+Every work on skin in the studio's own post style (owner, round 8, with two of his posts as the standard):
 the real subject — the limb with the tattoo — untouched in the middle, and behind it a faded close-up of
 the same tattoo, bigger and turned to a different angle.
 

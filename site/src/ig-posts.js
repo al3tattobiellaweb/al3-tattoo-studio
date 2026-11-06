@@ -43,7 +43,7 @@ export const IG_POSTS = {
   "a021": "p/DLS1-cdsf0g/",
   "a022": "p/DLS1xPqsXj_/",
   "a023": "p/DK-AhUsITKd/?img_index=1",
-  "a024": "p/DK-AhUsITKd/?img_index=3",
+  "a024": "p/DK-AhUsITKd/?img_index=2", // slide 2, not 3: found by pixel match when the originals came back (round 14)
   "a028": "p/DK-AKwGocNz/?img_index=1",
   "a029": "p/DK-AKwGocNz/?img_index=2",
   "a030": "p/DK-AKwGocNz/?img_index=3",

@@ -14,7 +14,7 @@ import { makeGate } from "./lib/pathloader.js";
 import { createTunnel } from "./hero.js";
 import { createProcess } from "./process.js";
 import { createDesk } from "./desk.js";
-import { createViperRail } from "./vrail.js";
+import { createNeonRail } from "./vrail.js";
 import { createInkLayer, createMachine, tattooTitle, stencilHeadings, buildDrips } from "./fx.js";
 import { createBadge } from "./badge.js";
 import { STUDIO, waLink, LOADER_LINES, STYLES, STYLE_LABEL, WORKS, PROCESS, WALKIN, SNAKES, SPACE, PRIVACY_UPDATED } from "./data.js";
@@ -601,22 +601,61 @@ function actWalkin() {
   $("#walkin-text").textContent = WALKIN.text;
 }
 
-/* ── Act 5: studio — the VVV crack draws itself in gold ───── */
+/* ── Act 5: studio — VVV: his kintsugi torso bursts and mends as you scroll (round 14, replaces the three photos) ── */
 function actStudio() {
-  const rnd = mulberry32(5);
-  const pts = crackPoints(rnd, [-10, 120], [410, 470], 6, 120, 0.4);
-  const path = $("#vvv-crack-path");
-  path.setAttribute("d", toD(pts));
-  path.setAttribute("pathLength", "100");
-  gsap.fromTo(path, { strokeDashoffset: 100 }, { strokeDashoffset: 0, ease: "none", scrollTrigger: { trigger: "#vvv", start: "top 80%", end: "bottom 45%", scrub: true } });
-  if (!REDUCED) {
-    gsap.fromTo(".vvv-1", { y: 50 }, { y: -40, ease: "none", scrollTrigger: { trigger: "#vvv", start: "top bottom", end: "bottom top", scrub: true } });
-    gsap.fromTo(".vvv-3", { y: -30 }, { y: 60, ease: "none", scrollTrigger: { trigger: "#vvv", start: "top bottom", end: "bottom top", scrub: true } });
+  const film = $("#vvv-film"), stage = $("#vvv-stage"), canvas = $("#vvv-canvas"), poster = $(".vvv-poster", stage);
+  if (MOBILE) { // phones: no pin, no frame pack; the film loops in a 4:5 frame while it is on screen and drifts against the page
+    poster.src = "/studio/vvv-poster_m.webp";
+    const video = document.createElement("video");
+    Object.assign(video, { muted: true, loop: true, playsInline: true, preload: "none", poster: "/studio/vvv-poster_m.webp" });
+    video.setAttribute("muted", ""); video.setAttribute("playsinline", "");
+    video.setAttribute("aria-label", canvas.getAttribute("aria-label"));
+    stage.insertBefore(video, canvas);
+    canvas.remove();
+    if (REDUCED) video.controls = true; // no autoplay: the visitor starts it
+    new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) {
+        if (!video.src) video.src = "/studio/vvv-film_m.mp4";
+        if (!REDUCED) video.play().catch(() => {});
+      } else video.pause();
+    }, { rootMargin: "120px 0px" }).observe(stage);
+    if (!REDUCED) gsap.fromTo([video, poster], { yPercent: -4 }, { yPercent: 4, ease: "none", scrollTrigger: { trigger: stage, start: "top bottom", end: "bottom top", scrub: true } });
+  } else {
+    const ctx = canvas.getContext("2d");
+    const strip = new FrameStrip("vvv");
+    let p = 0, loading = false;
+    const paint = () => { if (strip.ready) strip.draw(canvas, ctx, p); };
+    const fit = () => {
+      const r = stage.getBoundingClientRect(), dpr = Math.min(2, devicePixelRatio || 1);
+      canvas.width = Math.max(1, Math.round(r.width * dpr)); canvas.height = Math.max(1, Math.round(r.height * dpr));
+      paint();
+    };
+    const load = () => { // the 7 MB pack streams in when the act comes near; the poster (the whole torso) covers until then
+      if (loading) return;
+      loading = true;
+      strip.load().then(() => strip.warm(12)).then(() => { fit(); stage.classList.add("ready"); }).catch(() => { loading = false; });
+    };
+    // the film runs over the pin and is whole again for the last stretch of it, before the copy below comes up
+    const render = (q) => {
+      p = clamp01(q / 0.86);
+      paint();
+      if (!REDUCED) stage.style.setProperty("--z", (1.07 - q * 0.07).toFixed(4)); // the camera settles back as it mends
+    };
+    render(0);
+    stickyLength(film, 240);
+    ScrollTrigger.create({
+      trigger: film, start: "top top", end: "bottom bottom", scrub: 0.4,
+      onUpdate: (self) => { load(); render(self.progress); }, // a jump straight into the act loads it too
+      onRefresh: () => fit(),
+    });
+    // created after the pin, so its end includes the pinned length; starts the download three screens ahead
+    ScrollTrigger.create({ trigger: film, start: "top 300%", end: "bottom top", onToggle: (s) => { if (s.isActive) load(); } });
+    addEventListener("resize", fit);
   }
   gsap.fromTo(".print-lead, .people-quote, .person", { opacity: 0, y: 40 }, { opacity: 1, y: 0, stagger: 0.12, duration: 0.8, ease: "power2.out", scrollTrigger: { trigger: ".people", start: "top 85%" } });
 }
 
-/* ── chrome: nav, viper rail, pulse economy, cursor, chroma, anchors ── */
+/* ── chrome: nav, neon rail, pulse economy, cursor, chroma, anchors ── */
 function chrome() {
   $$(".wa-link").forEach((a) => { a.href = waLink(); });
   $$(".tel-link").forEach((a) => { a.href = `tel:${STUDIO.phoneTel}`; });
@@ -625,8 +664,8 @@ function chrome() {
     trigger: "#postazione", start: () => `top ${navH()}px`,
     onEnter: () => nav.classList.add("solid"), onLeaveBack: () => nav.classList.remove("solid"),
   });
-  // the viper rail: comes down the left edge as you scroll; its scales are the sections
-  const rail = createViperRail($("#vrail"), {
+  // the neon rail: one tube down the left edge, brightest where you are; its stations are the sections
+  const rail = createNeonRail($("#vrail"), {
     sections: [["top", "Inizio"], ["postazione", "Processo"], ["spazio", "The Studio Space"], ["stili", "Stili"],
       ["archivio", "Archivio"], ["walkin", "Walk-in"], ["studio", "Studio"]].map(([id, label]) => ({ el: $(`#${id}`), label })),
     mobile: MOBILE, reduced: REDUCED,
@@ -742,7 +781,7 @@ function privacy() {
   $("#privacy-body").innerHTML = `
     <p class="privacy-upd">Informativa breve ai sensi dell'art. 13 del Regolamento UE 2016/679 (GDPR) · aggiornata il ${PRIVACY_UPDATED}</p>
     <h3>Chi tratta i dati</h3>
-    <p>${STUDIO.name} di ${STUDIO.artist}, ${STUDIO.address} · ${vat} · ${mail}</p>
+    <p>${STUDIO.name} di ${STUDIO.owner} (${STUDIO.artist}), ${STUDIO.address} · ${vat} · ${mail}</p>
     <h3>Cosa raccoglie questo sito</h3>
     <p>Niente moduli, niente registrazione, nessuno strumento di statistica o di profilazione: il sito non ti chiede dati personali e non ne salva nel tuo browser. Caratteri, immagini e video arrivano tutti dal sito stesso: durante la visita nessun dato viene inviato a Google o ad altri terzi.</p>
     <h3>Dati tecnici</h3>

@@ -10,7 +10,7 @@
   <meta property="og:description" content="Il tatuatiere di Biella. 100% good habits." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://al3-tattoo-studio-biella.vercel.app/" />
-  <meta property="og:image" content="https://al3-tattoo-studio-biella.vercel.app/studio/vvv-red.webp" /><!-- previews need the full address: change both with the domain -->
+  <meta property="og:image" content="https://al3-tattoo-studio-biella.vercel.app/studio/og.jpg" /><!-- previews need the full address: change both with the domain -->
   <link rel="icon" href="/favicon.ico" sizes="48x48" />
   <link rel="icon" type="image/png" href="/brand/icon-192.png" sizes="192x192" />
   <link rel="apple-touch-icon" href="/brand/apple-touch-icon.png" />
@@ -179,19 +179,23 @@
       </div>
     </section>
 
-    <!-- Act 5 — Lo studio: VVV, the address, the hours, the boss -->
+    <!-- Act 5 — Lo studio: VVV, his kintsugi torso bursts and mends as you scroll (round 14: the film replaces the three
+         photos), then the address, the hours, the boss -->
     <section class="act studio" id="studio">
-      <div class="wrap studio-grid">
-        <div class="vvv" id="vvv">
-          <figure class="vvv-card vvv-1"><img src="/studio/vvv-red.webp" alt="Scultura bianca con crepe dorate sotto il neon rosso" loading="lazy" /></figure>
-          <figure class="vvv-card vvv-2"><img src="/studio/vvv-virescit.webp" alt="Fioriera in cemento incisa VIRESCIT con scultura e monstera" loading="lazy" /></figure>
-          <figure class="vvv-card vvv-3"><img src="/studio/vvv-blue.webp" alt="Scultura bianca con crepe dorate sotto il neon blu" loading="lazy" /></figure>
-          <svg class="vvv-crack" viewBox="0 0 400 600" preserveAspectRatio="none" aria-hidden="true"><path id="vvv-crack-path" d="" /></svg>
+      <div class="vvv-film" id="vvv-film">
+        <div class="vvv-stage" id="vvv-stage">
+          <img class="vvv-poster" src="/studio/vvv-poster.webp" alt="" />
+          <canvas id="vvv-canvas" role="img" aria-label="VVV: il busto bianco con le crepe d'oro si spezza tra il neon rosso e quello blu e si ricompone"></canvas>
+          <div class="vvv-shade" aria-hidden="true"></div>
         </div>
-        <div class="studio-copy">
+      </div>
+      <div class="wrap studio-copy">
+        <div class="studio-lead">
           <h2 class="h2 ink-head latin">Virtus virescit<br />vulnere</h2>
           <p class="script-line">La virtù cresce dalla ferita.</p>
           <p class="body">Le sculture dello studio le ha fatte Zippo con le sue mani, crepa dopo crepa: <b>VVV</b>, un progetto fai-da-te raccontato in tre reel. Un tatuaggio è una ferita che diventa un segno. Qui dentro, anche i muri lo sanno.</p><!-- PLACEHOLDER copy -->
+        </div>
+        <div class="studio-facts">
           <dl class="info">
             <div><dt>Dove</dt><dd>Via Mazzini 10/c<br />Biella</dd></div>
             <div><dt>Quando</dt><dd>Dal martedì al sabato<br />14:30 – 19:00</dd></div>

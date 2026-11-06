@@ -67,7 +67,7 @@ if (!IS_MOBILE) {
   if (opened) { await ev(`document.getElementById('lb-close').click()`); await sleep(300); }
 }
 
-// the viper rail: hovering a section's scale shows its name, clicking it scrolls there (desktop)
+// the neon rail: hovering a section's station shows its name, clicking it scrolls there (desktop)
 if (!IS_MOBILE) {
   const r = await ev(`(() => { const b = [...document.querySelectorAll('.vrail-mark button')].find((x) => x.getAttribute('aria-label').endsWith('Stili')); const q = b.getBoundingClientRect(); return { x: q.left + q.width / 2, y: q.top + q.height / 2 }; })()`);
   await send("Input.dispatchMouseEvent", { type: "mouseMoved", x: r.x, y: r.y });
@@ -77,7 +77,7 @@ if (!IS_MOBILE) {
   await send("Input.dispatchMouseEvent", { type: "mouseReleased", x: r.x, y: r.y, button: "left", clickCount: 1 });
   await sleep(2600);
   const at = await ev(`Math.round(document.querySelector('#stili').getBoundingClientRect().top) + 0`); // + 0: -0 does not serialise
-  check("viper rail: hover names a section, click goes there", label > 0.9 && Math.abs(at) < 40, `label ${label}, #stili top ${at}px`);
+  check("neon rail: hover names a section, click goes there", label > 0.9 && Math.abs(at) < 40, `label ${label}, #stili top ${at}px`);
   await ev(`__lenis.scrollTo(0, { immediate: true, force: true })`);
   await sleep(600);
 }

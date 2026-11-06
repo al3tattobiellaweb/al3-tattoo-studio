@@ -2,11 +2,12 @@
 // @sgt.zippo (studied 2026-10-18); lines marked PLACEHOLDER are drafts for the
 // owner to review (see BRIEF.md §2, open item 4).
 
-export const PRIVACY_UPDATED = "31 ottobre 2026";
+export const PRIVACY_UPDATED = "6 novembre 2026";
 
 export const STUDIO = {
   name: "AL3 Tattoo Studio",
   artist: "Sgt. Zippo",
+  owner: "Marco Fuoco", // Sgt. Zippo's own name, the data controller in the privacy notice (owner, round 14)
   address: "Via Mazzini 10/c, Biella",
   // Italian law: a VAT-registered business shows its Partita IVA on its website. Both from the owner (round 8);
   // while empty the page shows a "da inserire" marker and verify.mjs fails, so it cannot ship half-done

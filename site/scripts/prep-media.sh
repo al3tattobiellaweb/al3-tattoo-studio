@@ -16,10 +16,10 @@ done
 # process act: his owl, design → tattoo (round 8): scripts/owl-process.py, from assets/process/owl-*.jpg
 
 # studio: post covers (360x640)
+# VVV (round 14): the three sculpture photos made way for the owner's film, assets/v1-explode-recompose.mp4:
+#   node scripts/bake.mjs --src ../assets/v1-explode-recompose.mp4 --name vvv --width 1280 --fps 15 --webp 70 --out public/frames
+#   phones: a 4:5 centre crop, 720x900 crf 26 (studio/vvv-film_m.mp4); posters = its first frame; og.jpg = 1200x630 of it
 cp_webp() { ffmpeg -v error -y -i "$RAW/raw/$1.jpg" -c:v libwebp -quality 86 "$OUT/studio/$2.webp"; }
-cp_webp zip_post_13 vvv-red
-cp_webp zip_post_14 vvv-virescit
-cp_webp zip_post_15 vvv-blue
 cp_webp zip_post_19 zippo-at-work
 cp_webp al3_post_15 zippo-neon
 cp_webp zip_post_12 bulldog

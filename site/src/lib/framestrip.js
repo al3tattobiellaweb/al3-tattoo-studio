@@ -2,7 +2,7 @@
 //
 // A "strip" is two files produced by scripts/bake.mjs:
 //   /frames/<name>.pack  concatenated JPEG frames (one HTTP request, cacheable)
-//   /frames/<name>.json  { frames, width, height, offsets[] }  (offsets has frames+1 entries)
+//   /frames/<name>.json  { frames, width, height, type?, offsets[] }  (offsets has frames+1 entries; type defaults to JPEG)
 //
 // Scroll progress (0..1) maps to an exact frame index which is drawn to a canvas
 // SYNCHRONOUSLY when the frame is already decoded. Never defer the paint to
@@ -66,7 +66,7 @@ export class FrameStrip {
     if (this.cache.has(i)) return this.cache.get(i);
     if (this.pending.has(i)) return this.pending.get(i);
     const { offsets } = this.meta;
-    const p = createImageBitmap(this.blob.slice(offsets[i], offsets[i + 1], "image/jpeg"))
+    const p = createImageBitmap(this.blob.slice(offsets[i], offsets[i + 1], this.meta.type || "image/jpeg"))
       .then((bmp) => {
         this.cache.set(i, bmp);
         this.cacheOrder.push(i);
