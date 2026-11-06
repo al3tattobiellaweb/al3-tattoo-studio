@@ -741,21 +741,8 @@ function effects() {
     if (e.target.closest("#lightbox")) return;
     ink.splat(e.clientX, e.clientY, e.target.closest("a, button") ? 0.6 : 1);
   }, { passive: true });
-  const snd = $("#snd");
-  snd.addEventListener("click", () => {
-    const on = machine.toggle();
-    snd.setAttribute("aria-pressed", on ? "true" : "false");
-    snd.setAttribute("aria-label", `Suono della macchinetta: ${on ? "acceso" : "spento"}`);
-    snd.title = on ? "Spegni la macchinetta" : "Accendi la macchinetta";
-  });
-  let act = 0;
-  gsap.ticker.add(() => {
-    ink.frame(performance.now());
-    if (!machine.on) return;
-    const target = Math.max(ink.speed() * 0.9, Math.min(1, Math.abs(lenis.velocity || 0) / 35), processDrawing ? 0.65 : 0, badge.level() * 0.9);
-    act += (target - act) * (target > act ? 0.25 : 0.04);
-    machine.setActivity(act);
-  });
+  // no sound toggle since round 15 (owner: "remove the accendi la macchinetta button"): the machine stays silent
+  gsap.ticker.add(() => ink.frame(performance.now()));
   $$(".drips").forEach((el) => buildDrips(el, { seed: +el.dataset.seed || 1, reduced: REDUCED || MOBILE })); // phones: poured, still
   stencilHeadings($$(".ink-head"), { reduced: REDUCED });
 }

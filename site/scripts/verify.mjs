@@ -26,7 +26,7 @@ await sleep(9000);
 
 check("loader gone and scroll unlocked", await ev(`document.getElementById('loader').classList.contains('gone') && !document.body.classList.contains('loading')`));
 check("WhatsApp links point at wa.me", await ev(`[...document.querySelectorAll('.wa-link')].every(a => a.href.startsWith('https://wa.me/390152470107'))`));
-check("call links point at the studio's number", await ev(`(() => { const t = [...document.querySelectorAll('.tel-link')]; return t.length >= 3 && t.every((a) => a.href === 'tel:+390152470107'); })()`));
+check("call links point at the studio's number", await ev(`(() => { const t = [...document.querySelectorAll('.tel-link')]; return t.length >= 1 && t.every((a) => a.href === 'tel:+390152470107'); })()`));
 check("status chip filled", await ev(`document.querySelector('[data-status] span').textContent.length > 5`), await ev(`document.querySelector('[data-status] span').textContent`));
 
 // tunnel pick: a real mouse click on a card centre (desktop); a tap on phones

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // Interaction check for the tattoo effects, with real CDP mouse input:
-// a clean pointer (no trail), ink splatter, the machine's sound toggle, the title mid-tattoo.
+// a clean pointer (no trail), ink splatter, no sound toggle (round 15), the title mid-tattoo.
 //   node scripts/fx-check.mjs <outDir>
 import { writeFileSync, mkdirSync, existsSync } from "node:fs";
 import { spawn } from "node:child_process";
@@ -53,18 +53,8 @@ check("ink heals away", clean === 0, `${clean} samples left`);
 // a click on a flying design opens it: close that first
 await ev(`document.getElementById('lightbox').hidden || document.getElementById('lb-close').click()`);
 await sleep(300);
-// the machine's sound: a real click on the toggle
-const r = await ev(`(() => { const b = document.getElementById('snd').getBoundingClientRect(); return [b.x + b.width / 2, b.y + b.height / 2]; })()`);
-await mouse("mouseMoved", r[0], r[1]);
-const hitEl = await ev(`(() => { const e = document.elementFromPoint(${r[0]}, ${r[1]}); return e ? (e.tagName + '#' + e.id + '.' + e.className.baseVal ?? e.className) : null; })()`);
-await mouse("mousePressed", r[0], r[1], { button: "left", clickCount: 1 });
-await mouse("mouseReleased", r[0], r[1], { button: "left", clickCount: 1 });
-await sleep(400);
-check("sound toggle switches on", await ev(`document.getElementById('snd').getAttribute('aria-pressed') === 'true'`), "hit " + hitEl + " at " + r.map(Math.round));
-await mouse("mousePressed", r[0], r[1], { button: "left", clickCount: 1 });
-await mouse("mouseReleased", r[0], r[1], { button: "left", clickCount: 1 });
-await sleep(300);
-check("…and off again", await ev(`document.getElementById('snd').getAttribute('aria-pressed') === 'false'`));
+// no sound toggle since round 15: the nav holds no machine button
+check("no sound toggle in the nav", await ev(`!document.getElementById('snd')`));
 
 // the title mid-tattoo (forced to 55% on the second line, needle visible)
 await ev(`(() => { const l = document.querySelector('.ht-logo'); document.querySelector('.hero-title').classList.remove('inked'); l.style.setProperty('--p', .55); l.classList.add('writing'); })()`);
