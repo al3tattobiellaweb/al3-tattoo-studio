@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // Bake one film (mp4/mov) into a scroll-scrub frame strip: <name>.pack + <name>.json
 //
-//   node bake.mjs --src film.mp4 --name ch01 [--width 1280] [--fps 18] [--q 4] [--out public/frames] [--webp 70]
+//   node bake.mjs --src film.mp4 --name ch01 [--width 1280] [--fps 18] [--q 4] [--out public/frames] [--webp 70] [--crop w:h:x:y]
 //
 // .pack  = concatenated JPEGs; .json = { frames, width, height, offsets[] } with a
 // sentinel end offset, so frame i is bytes offsets[i]..offsets[i+1]. One request
@@ -12,6 +12,7 @@
 //   width 1280    desktop canvases cover-fit; 1600 only if the subject is small
 //   q 4           ffmpeg -qscale:v (2 = best … 7 = smallest). Aim ≤ 12 MB per pack;
 //                 a bright, detailed scene can hit 14 MB at q4 — raise q to 5-6.
+//   --crop C     ffmpeg crop before the scale, e.g. a phone's centre crop of a wide film (round 18: vvv_m)
 //   --webp N     WebP frames at quality N instead of JPEG (busy films: ~30 % lighter at the same look;
 //                the .json carries type "image/webp" and FrameStrip slices them as such)
 // Requires ffmpeg on PATH or FFMPEG env var pointing at the binary.
@@ -25,7 +26,7 @@ const arg = (k, d) => { const i = process.argv.indexOf(`--${k}`); return i > -1 
 const SRC = arg("src"), NAME = arg("name");
 if (!SRC || !NAME) { console.error("usage: bake.mjs --src film.mp4 --name key [--width 1280] [--fps 18] [--q 4] [--out dir]"); process.exit(1); }
 const WIDTH = +arg("width", 1280), FPS = +arg("fps", 18), Q = +arg("q", 4), OUT = arg("out", ".");
-const WEBP = arg("webp", null), EXT = WEBP ? "webp" : "jpg";
+const WEBP = arg("webp", null), EXT = WEBP ? "webp" : "jpg", CROP = arg("crop", null);
 const FF = process.env.FFMPEG || "ffmpeg";
 
 const tmp = join(tmpdir(), `bake_${NAME}`);
@@ -34,7 +35,7 @@ mkdirSync(tmp, { recursive: true });
 mkdirSync(OUT, { recursive: true });
 
 const enc = WEBP ? ["-c:v", "libwebp", "-quality", String(WEBP), "-compression_level", "4"] : ["-qscale:v", String(Q)];
-const r = spawnSync(FF, ["-y", "-i", SRC, "-an", "-vf", `fps=${FPS},scale=${WIDTH}:-2`, ...enc, join(tmp, `f_%04d.${EXT}`)], { stdio: ["ignore", "ignore", "pipe"] });
+const r = spawnSync(FF, ["-y", "-i", SRC, "-an", "-vf", `fps=${FPS},${CROP ? `crop=${CROP},` : ""}scale=${WIDTH}:-2`, ...enc, join(tmp, `f_%04d.${EXT}`)], { stdio: ["ignore", "ignore", "pipe"] });
 if (r.status !== 0) { console.error(r.stderr?.toString().split("\n").slice(-6).join("\n")); process.exit(1); }
 
 const frames = readdirSync(tmp).filter((f) => f.endsWith(`.${EXT}`)).sort();

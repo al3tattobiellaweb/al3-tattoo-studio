@@ -230,7 +230,7 @@ The left edge belongs to the neon rail: 64px wide on desktop, 22px on phones. Pi
 
 Each act has its own composition, with copy and picture never overlapping. VVV keeps to it at full bleed: the film fades into the ground at its foot and the copy starts below it. A picture starts past the end of its title's column, or passes behind a solid panel.
 
-Breakpoints: below 1100px the nav links go and the archive drops from five columns to four; below 760px the layout becomes the phone composition, with two archive columns and the VVV film unpinned; below 420px the brand text goes. On phones and coarse pointers, grain, nav blur, heavy filters and the badge's colour split are removed to keep scrolling smooth.
+Breakpoints: below 1100px the nav links go and the archive drops from five columns to four; below 760px the layout becomes the phone composition, with two archive columns and the VVV film as a full-width 3:4 block, still pinned; below 420px the brand text goes. On phones and coarse pointers, grain, nav blur, heavy filters and the badge's colour split are removed to keep scrolling smooth.
 
 ## Elevation & Depth
 
@@ -286,7 +286,7 @@ Die-cut designs drift past the camera with a neon aura, red on the left and blue
 One neon tube down the left edge (64px rail, the tube at 20px; 22px rail and 9px on phones), Hot Neon Red at the top through violet to blue at the bottom, like the studio's two neons. It is a light, not a control: the whole tube glows faintly, the stretch already scrolled through burns brighter, and where you are now it flares white-hot along the tube with a halo in its own colour at that height. The sections are stations on the tube, Bone ahead and lit in the tube's colour once passed, ringed while you are in that section; on desktop each names its section on hover (Ink 800 tag, Hot Neon Red for the current one) and scrolls there. A slow hum and a rare stutter; with reduced motion it holds still and only follows the scroll.
 
 ### VVV Film
-His kintsugi torso, the owner's explode-recompose film, full bleed in a pinned stage: as you scroll it glows, bursts in red and blue, and mends, while the camera settles from 1.07 to 1. Ink 900 fades it in at the top from the archive and Ink 950 takes its foot, so the copy below never sits on the picture. Phones: a full-width 4:5 frame that loops while on screen and drifts a few percent against the page.
+His kintsugi torso, the owner's explode-recompose film, full bleed in a pinned stage: as you scroll it glows, bursts in red and blue, and mends, while the camera settles from 1.07 to 1. Ink 950 fades it in at the top from the act above and takes its foot, so the copy below never sits on the picture. It sits right after the process act, before The Studio Space (round 18). Phones: the same scroll-driven film, pinned, as a full-width 3:4 block in the middle of the screen fading into the ground above and below.
 
 ### Machine Cursor
 On fine pointers the cursor is a coil tattoo machine with the needle tip on the pointer, leaving ink splatter on click.

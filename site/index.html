@@ -106,10 +106,10 @@
     </a>
     <nav class="nav-links" aria-label="Sezioni">
       <a href="#postazione">Processo</a>
+      <a href="#studio">Studio</a>
       <a href="#spazio">Spazio</a>
       <a href="#stili">Stili</a>
       <a href="#archivio">Archivio</a>
-      <a href="#studio">Studio</a>
     </nav>
     <a class="walkin-chip" id="walkin-chip" href="#walkin" hidden>Walk-in 31/10</a>
     <a class="pill wa-link" id="nav-pill" href="#" target="_blank" rel="noopener">
@@ -173,6 +173,62 @@
       </div>
     </section>
 
+    <!-- Act 2a — Lo studio: VVV, his kintsugi torso bursts and mends as you scroll (round 14: the film replaces the three
+         photos), then the address, the hours, the boss. Round 18 (owner): moved up, just before The Studio Space -->
+    <section class="act studio" id="studio">
+      <div class="vvv-film" id="vvv-film">
+        <div class="vvv-stage" id="vvv-stage">
+          <img class="vvv-poster" src="/studio/vvv-poster.webp" alt="" loading="lazy" /><!-- lazy: phones swap it for their 3:4 poster before it loads -->
+          <canvas id="vvv-canvas" role="img" aria-label="VVV: il busto bianco con le crepe d'oro si spezza tra il neon rosso e quello blu e si ricompone"></canvas>
+          <div class="vvv-shade" aria-hidden="true"></div>
+        </div>
+      </div>
+      <div class="wrap studio-copy">
+        <div class="studio-lead">
+          <h2 class="h2 ink-head latin">Virtus virescit<br />vulnere</h2>
+          <p class="script-line">La virtù cresce dalla ferita.</p>
+          <p class="body">Le sculture dello studio le ha fatte Zippo con le sue mani, crepa dopo crepa: <b>VVV</b>, un progetto fai-da-te raccontato in tre reel. Un tatuaggio è una ferita che diventa un segno. Qui dentro, anche i muri lo sanno.</p><!-- PLACEHOLDER copy -->
+        </div>
+        <div class="studio-facts">
+          <dl class="info">
+            <div><dt>Dove</dt><dd>Via Mazzini 10/c<br />Biella</dd></div>
+            <div><dt>Quando</dt><dd>Dal martedì al sabato<br />14:30 – 19:00</dd></div>
+            <div><dt>Adesso</dt><dd><span class="status" data-status><i></i><span>—</span></span></dd></div>
+            <div><dt>Cosa</dt><dd>Tattoo · Piercing<br />Gioielli</dd></div>
+          </dl>
+          <div class="studio-actions">
+            <a class="btn btn-primary wa-link" href="#" target="_blank" rel="noopener">Scrivimi su WhatsApp</a>
+            <a class="btn btn-ghost" href="https://maps.app.goo.gl/fw5NLr9mtjjSzXzt7" target="_blank" rel="noopener">Apri in Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- the people (round 9, taste pass): Zippo large with his line set big; the boss and the jewel as two tilted prints -->
+      <div class="wrap people">
+        <div class="print print-lead"><img src="/studio/zippo-at-work.webp" alt="Sgt. Zippo al lavoro con la macchinetta" loading="lazy" /></div>
+        <figure class="people-quote">
+          <blockquote><p>I don't procrastinate, i wait until the panic improves my focus…<br />Insomma…</p></blockquote>
+          <figcaption>Sgt. Zippo, il tatuatiere</figcaption>
+        </figure>
+        <div class="people-pair">
+          <figure class="person">
+            <div class="print"><img src="/studio/bulldog.webp" alt="Il bulldog bianco dello studio" loading="lazy" /></div>
+            <figcaption>
+              <b>Segreti del mestiere.</b>
+              <span class="small">Il vero capo: supervisiona ogni seduta. Non fa sconti.</span><!-- PLACEHOLDER copy -->
+            </figcaption>
+          </figure>
+          <figure class="person">
+            <div class="print"><img src="/studio/jewel.webp" alt="Anello per piercing con zirconi" loading="lazy" class="jewel" /></div>
+            <figcaption>
+              <b>Anche il metallo conta.</b><!-- PLACEHOLDER copy -->
+              <span class="small">Piercing e gioielleria in studio. Chiedi su WhatsApp cosa c'è disponibile.</span><!-- PLACEHOLDER copy -->
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
     <!-- Act 2b — The Studio Space (round 8; round 15, owner: "remove the video of the studio and keep the 3 images next to
          each other, you can click on one image to make it bigger"): his three photos as prints, side by side -->
     <section class="act space" id="spazio">
@@ -225,61 +281,6 @@
       </div>
     </section>
 
-    <!-- Act 5 — Lo studio: VVV, his kintsugi torso bursts and mends as you scroll (round 14: the film replaces the three
-         photos), then the address, the hours, the boss -->
-    <section class="act studio" id="studio">
-      <div class="vvv-film" id="vvv-film">
-        <div class="vvv-stage" id="vvv-stage">
-          <img class="vvv-poster" src="/studio/vvv-poster.webp" alt="" />
-          <canvas id="vvv-canvas" role="img" aria-label="VVV: il busto bianco con le crepe d'oro si spezza tra il neon rosso e quello blu e si ricompone"></canvas>
-          <div class="vvv-shade" aria-hidden="true"></div>
-        </div>
-      </div>
-      <div class="wrap studio-copy">
-        <div class="studio-lead">
-          <h2 class="h2 ink-head latin">Virtus virescit<br />vulnere</h2>
-          <p class="script-line">La virtù cresce dalla ferita.</p>
-          <p class="body">Le sculture dello studio le ha fatte Zippo con le sue mani, crepa dopo crepa: <b>VVV</b>, un progetto fai-da-te raccontato in tre reel. Un tatuaggio è una ferita che diventa un segno. Qui dentro, anche i muri lo sanno.</p><!-- PLACEHOLDER copy -->
-        </div>
-        <div class="studio-facts">
-          <dl class="info">
-            <div><dt>Dove</dt><dd>Via Mazzini 10/c<br />Biella</dd></div>
-            <div><dt>Quando</dt><dd>Dal martedì al sabato<br />14:30 – 19:00</dd></div>
-            <div><dt>Adesso</dt><dd><span class="status" data-status><i></i><span>—</span></span></dd></div>
-            <div><dt>Cosa</dt><dd>Tattoo · Piercing<br />Gioielli</dd></div>
-          </dl>
-          <div class="studio-actions">
-            <a class="btn btn-primary wa-link" href="#" target="_blank" rel="noopener">Scrivimi su WhatsApp</a>
-            <a class="btn btn-ghost" href="https://maps.app.goo.gl/fw5NLr9mtjjSzXzt7" target="_blank" rel="noopener">Apri in Maps</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- the people (round 9, taste pass): Zippo large with his line set big; the boss and the jewel as two tilted prints -->
-      <div class="wrap people">
-        <div class="print print-lead"><img src="/studio/zippo-at-work.webp" alt="Sgt. Zippo al lavoro con la macchinetta" loading="lazy" /></div>
-        <figure class="people-quote">
-          <blockquote><p>I don't procrastinate, i wait until the panic improves my focus…<br />Insomma…</p></blockquote>
-          <figcaption>Sgt. Zippo, il tatuatiere</figcaption>
-        </figure>
-        <div class="people-pair">
-          <figure class="person">
-            <div class="print"><img src="/studio/bulldog.webp" alt="Il bulldog bianco dello studio" loading="lazy" /></div>
-            <figcaption>
-              <b>Segreti del mestiere.</b>
-              <span class="small">Il vero capo: supervisiona ogni seduta. Non fa sconti.</span><!-- PLACEHOLDER copy -->
-            </figcaption>
-          </figure>
-          <figure class="person">
-            <div class="print"><img src="/studio/jewel.webp" alt="Anello per piercing con zirconi" loading="lazy" class="jewel" /></div>
-            <figcaption>
-              <b>Anche il metallo conta.</b><!-- PLACEHOLDER copy -->
-              <span class="small">Piercing e gioielleria in studio. Chiedi su WhatsApp cosa c'è disponibile.</span><!-- PLACEHOLDER copy -->
-            </figcaption>
-          </figure>
-        </div>
-      </div>
-    </section>
   </main>
 
   <footer class="footer">
@@ -314,11 +315,11 @@
     <nav aria-label="Sezioni del sito">
       <ul class="menu-links">
         <li><a href="#postazione">Processo</a></li>
+        <li><a href="#studio">Studio e orari</a></li>
         <li><a href="#spazio">The Studio Space</a></li>
         <li><a href="#stili">Stili</a></li>
         <li><a href="#archivio">Archivio</a></li>
         <li id="menu-walkin" hidden><a href="#walkin">Walk-in 31/10</a></li>
-        <li><a href="#studio">Studio e orari</a></li>
       </ul>
     </nav>
     <div class="menu-foot">

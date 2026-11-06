@@ -18,7 +18,8 @@ done
 # studio: post covers (360x640)
 # VVV (round 14): the three sculpture photos made way for the owner's film, assets/v1-explode-recompose.mp4:
 #   node scripts/bake.mjs --src ../assets/v1-explode-recompose.mp4 --name vvv --width 1280 --fps 15 --webp 70 --out public/frames
-#   phones: a 4:5 centre crop, 720x900 crf 26 (studio/vvv-film_m.mp4); posters = its first frame; og.jpg = 1200x630 of it
+#   phones (round 18, scrubbed too): node scripts/bake.mjs --src ../assets/v1-explode-recompose.mp4 --name vvv_m --width 540 --fps 15 --webp 60 --crop 1080:1440:740:0 --out public/frames
+#   posters = its first frame (desktop 1280x720, phones the same 3:4 crop at 540x720); og.jpg = 1200x630 of it
 cp_webp() { ffmpeg -v error -y -i "$RAW/raw/$1.jpg" -c:v libwebp -quality 86 "$OUT/studio/$2.webp"; }
 cp_webp zip_post_19 zippo-at-work
 cp_webp al3_post_15 zippo-neon

@@ -267,4 +267,7 @@ export const OFF_ARCHIVE = [
   "a424", "a431", "a436", "a440", "a462", "a471", "a475", "a476", "a477", "a478", "a479", "a493",
   "a500", "a516", "a519", "a526", "a528", "a529", "a535", "a548", "a549", "a556", "a557", "a577",
   "a599", "a609", "a622", "a624", "a625", "a627", "a629", "a667",
+  // round 18 (owner: "go ahead with change 3 but keep 199", "go ahead with change 4"): small or simple pieces, and a141,
+  // the same calf as a139
+  "31", "32", "35", "03", "30", "a032", "a076", "a141", "a381", "a443", "a491", "a545", "a554", "a581",
 ];

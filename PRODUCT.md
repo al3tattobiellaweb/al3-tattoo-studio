@@ -33,7 +33,7 @@ His own hand. He draws each design himself, on iPad with Procreate and an Apple 
 - Static site with no backend and no forms: contact happens on WhatsApp or Instagram.
 - The privacy notice states what the site really does: it contacts only its own host, with no analytics, session replay or browser storage. Adding any of these means updating the notice first.
 - Legal details on the page: P.IVA 02665090029; privacy contact al3tattoostudio@gmail.com. The notice has not been reviewed by a lawyer.
-- The archive shows at least 150 works (203 since the owner's cut in round 16). The hero shows 130 designs: his 21 drawings and 109 redrawn designs.
+- The archive shows at least 150 works (189 since the owner's second cut in round 18). The hero shows 130 designs: his 21 drawings and 109 redrawn designs.
 - AI is used for one thing only: faithful redraws of his existing tattoos, each from its original photo. Zippo has approved them, and the footer discloses them. Photos, archive works and motion stay real or code-drawn, and no design is ever invented. Any other AI media, such as an AI-extended video, needs the owner's approval and its own disclosure.
 - Terms: "Il Tatuatiere", "Sulla pelle", "Solo il disegno", "Stili".
 
@@ -60,7 +60,7 @@ Undecided:
 
 ## Evidence on Hand
 
-- 203 real works on skin in the archive (`site/public/works`; 18 more stay only as photos behind hero designs) and his 21 original designs (`assets/da zippo`).
+- 189 real works on skin in the archive (`site/public/works`; 22 more stay only as photos behind hero designs) and his 21 original designs (`assets/da zippo`).
 - One design followed to the healed tattoo: his owl (`assets/process`).
 - His desk photo (`assets/process`), a walk-through video (no longer on the site since round 15) and three photos of the studio (`assets/al3 studio`), and post covers of the sculptures, the artist at work and the bulldog (`site/public/studio`).
 - The 109 redraw masters (`assets/redraws`).
