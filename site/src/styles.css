@@ -254,6 +254,18 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .scroll-cue span { width: 2px; height: 36px; background: rgba(238, 232, 225, .3); position: relative; overflow: hidden; }
 .motion .scroll-cue span::after { content: ""; position: absolute; left: 0; top: -40%; width: 100%; height: 40%; background: var(--red-hi); animation: drip 2s var(--ease) infinite; }
 @keyframes drip { to { top: 110%; } }
+/* round 23 (owner): beside Scorri, the hint that the flying designs open — "Clicca" with a mouse, "Tocca" on a touch screen */
+.hero-foot-r { display: flex; align-items: center; gap: 16px; }
+.hero-hint { display: inline-flex; align-items: center; gap: 9px; margin: 0; pointer-events: none; font-size: 13px; letter-spacing: .02em; color: var(--bone-2); }
+.hero-hint::after { content: ""; width: 1px; height: 16px; margin-left: 7px; background: rgba(238, 232, 225, .25); }
+.hero-hint .ico { width: 17px; height: 17px; flex: none; stroke-width: 1.5; color: var(--red-hi); }
+.hh-tap { display: none; }
+@media (hover: none), (pointer: coarse) { .hh-click { display: none; } .hh-tap { display: inline; } }
+@media (max-width: 759px) { /* no room beside the status: the hint takes its own line, right over Scorri */
+  .hero-foot-r { position: relative; }
+  .hero-hint { position: absolute; right: 0; bottom: calc(100% + 2px); white-space: nowrap; font-size: 12.5px; }
+  .hero-hint::after { display: none; }
+}
 
 /* ── Act 1b: la postazione (sticky push-in onto the central screen) ── */
 .desk { height: 240svh; }
