@@ -183,7 +183,21 @@ await sleep(300);
 const big2 = await ev(`document.getElementById('lb-cap').textContent`);
 await send("Input.dispatchKeyEvent", { type: "keyDown", key: "Escape", code: "Escape", windowsVirtualKeyCode: 27 });
 await sleep(300);
-check("Studio Space: a click opens the photo large, → steps, Esc closes", big.open && big.src === "ingresso_l.webp" && big.decoded && big.w >= 1000 && /1\/6/.test(big.cap) && big.ig && big.mode && /2\/6/.test(big2) && (await ev(`document.getElementById('lightbox').hidden`)), JSON.stringify({ ...big, next: big2 }));
+check("Studio Space: a click opens the photo large, → steps, Esc closes", big.open && big.src === "stanza-foto_l.webp" && big.decoded && big.w >= 1000 && /1\/6/.test(big.cap) && big.ig && big.mode && /2\/6/.test(big2) && (await ev(`document.getElementById('lightbox').hidden`)), JSON.stringify({ ...big, next: big2 }));
+// Piercing (round 26): nine close-ups from his piercing posts; a real click opens one large with "Piercing" and its post
+await ev(`__lenis.scrollTo(document.getElementById('pierce-grid').getBoundingClientRect().top + scrollY - innerHeight * 0.2, { immediate: true, force: true })`);
+await sleep(1600);
+const pg = await ev(`(() => { const b = [...document.querySelectorAll('.pierce-tile')]; const r = b[0].getBoundingClientRect();
+  return { n: b.length, tags: b.filter((x) => x.querySelector('.pierce-tag')?.textContent.trim()).length, inFrame: b.every((x) => { const q = x.getBoundingClientRect(); return q.left >= 0 && q.right <= document.documentElement.clientWidth; }),
+    wa: decodeURIComponent(document.getElementById('pierce-wa').href).toLowerCase().includes('per un piercing'), nav: !!document.querySelector('.nav-links a[href="#piercing"]') && !!document.querySelector('.menu-links a[href="#piercing"]'), at: [r.left + r.width / 2, r.top + r.height / 2] }; })()`);
+for (const type of ["mouseMoved", "mousePressed", "mouseReleased"]) await send("Input.dispatchMouseEvent", { type, x: Math.round(pg.at[0]), y: Math.round(pg.at[1]), button: "left", clickCount: 1 });
+const pl = await ev(`(async () => { const lb = document.getElementById('lightbox'), im = document.getElementById('lb-img'), ig = document.getElementById('lb-ig');
+  await new Promise((r) => setTimeout(r, 300)); const ok = await Promise.race([im.decode().then(() => true, () => false), new Promise((r) => setTimeout(() => r(false), 5000))]);
+  return { open: !lb.hidden, src: im.src.split('/').pop(), w: im.naturalWidth, decoded: ok, cap: document.getElementById('lb-cap').textContent, ig: !ig.hidden && ig.href }; })()`);
+await send("Input.dispatchKeyEvent", { type: "keyDown", key: "Escape", code: "Escape", windowsVirtualKeyCode: 27 });
+await sleep(300);
+check("Piercing: nine photos with their placement, in nav and menu, WhatsApp asks about a piercing", pg.n === 9 && pg.tags === 9 && pg.inFrame && pg.wa && pg.nav, JSON.stringify({ n: pg.n, tags: pg.tags, inFrame: pg.inFrame, wa: pg.wa, nav: pg.nav }));
+check("Piercing: a click opens the photo large with its Instagram post", pl.open && pl.src === "daith-flat-helix_l.webp" && pl.decoded && pl.w >= 1400 && /^Piercing/.test(pl.cap) && /1\/9/.test(pl.cap) && /instagram\.com\/p\/DLhDWtusFGM\//.test(pl.ig || "") && (await ev(`document.getElementById('lightbox').hidden`)), JSON.stringify(pl));
 // the menu (round 10): below 1100 px it holds the sections; a link closes it and lands there, and the page scrolls again
 if (VP[0] <= 1100) {
   await ev(`__lenis.scrollTo(0, { immediate: true, force: true })`);

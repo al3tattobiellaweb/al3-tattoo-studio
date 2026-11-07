@@ -18,9 +18,9 @@ HERE = os.path.dirname(os.path.abspath(__file__)); SITE = os.path.dirname(HERE);
 SRC = os.path.join(ROOT, "assets", "final foto studio")
 OUT = os.path.join(SITE, "public", "space")
 os.makedirs(OUT, exist_ok=True)
-PHOTOS = {  # a walk through the studio, in the order the prints are shown (data.js SPACE.photos)
-    "IMG_7613": "ingresso",    # the hall: painted doors, ivy, violet neon
-    "IMG_7616": "corridoio",   # the corridor with the "Chill Vibes" rugs
+PHOTOS = {  # in the order the prints are shown (data.js SPACE.photos)
+    "IMG_7613": "stanza-foto", # the photo room: painted doors, ivy, violet neon (owner, round 25b: not the entrance)
+    "IMG_7616": "camerino",    # the changing room, "Chill Vibes" rugs (owner, round 25b: not a corridor)
     "IMG_7626": "sala",        # the long room: leather couch, plants, the painted ceiling
     "IMG_7619": "postazione",  # the tattoo station: black chair, red trolley, lamps
     "IMG_7625": "nicchia",     # the red niche with the painting and the shelves

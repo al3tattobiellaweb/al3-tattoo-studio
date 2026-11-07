@@ -65,7 +65,9 @@ Undecided:
 - His desk photo (`assets/process`), a walk-through video (no longer on the site since round 15) three photos of the studio (`assets/al3 studio`, on the site until round 25) and six newer ones with the bulldog on the couch (`assets/final foto studio`, on the site since round 25), and post covers of the sculptures and the artist at work (`site/public/studio`).
 - The 109 redraw masters (`assets/redraws`).
 
-Not on hand, and never to be invented: testimonials, reviews, press, awards, client numbers, prices, or the bulldog's name.
+His piercing work (since June 2024): six posts on @sgt.zippo, nine of their photos in `assets/piercing` (round 26).
+
+Not on hand, and never to be invented: testimonials, reviews, press, awards, client numbers, prices, or the bulldog's name. For piercing: prices, minimum age, aftercare rules and jewellery stock beyond what his posts say.
 
 ## Product Principles
 

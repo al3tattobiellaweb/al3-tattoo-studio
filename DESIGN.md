@@ -230,7 +230,7 @@ The left edge belongs to the neon rail: 64px wide on desktop, 22px on phones. Pi
 
 Each act has its own composition, with copy and picture never overlapping. The one exception is VVV (owner, round 22: "bring this text over the bust video on the left side"): its title, line and paragraph ride over the film's left side, on a veil that darkens the studio wall, measured clear of the torso at every width (at least 58px at 1280); on phones over the film's lower part. A picture starts past the end of its title's column, or passes behind a solid panel.
 
-Breakpoints: below 1100px the nav links go and the archive drops from five columns to four; below 760px the layout becomes the phone composition, with two archive columns and the VVV film as a full-width 3:4 block, still pinned; below 420px the brand text goes. On phones and coarse pointers, grain, nav blur, heavy filters and the badge's colour split are removed to keep scrolling smooth.
+Breakpoints: below 1100px the nav links go (six since round 26: Processo, Spazio, Stili, Archivio, Piercing, Studio) and the archive drops from five columns to four; below 1000px the Piercing copy stops holding still and goes above its grid; below 760px the layout becomes the phone composition, with two archive columns and the VVV film as a full-width 3:4 block, still pinned; below 420px the brand text goes. On phones and coarse pointers, grain, nav blur, heavy filters and the badge's colour split are removed to keep scrolling smooth.
 
 ## Elevation & Depth
 

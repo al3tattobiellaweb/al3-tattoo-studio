@@ -387,6 +387,42 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .archive-cta .script-line { margin: 0 12px 0 0; }
 
 /* ── walk-in (his glitch poster) ── */
+/* ── Act 4b: piercing (round 26) — his words in a column that holds still, nine close-ups beside it; metal, so a cold
+   light from the top right and the studio's red low on the left; a glint crosses a photo under the pointer ── */
+.piercing { position: relative; overflow: clip; /* clip, not hidden: hidden would make it a scroll box and the copy could not stick */ padding: clamp(110px, 16vh, 180px) 0 clamp(100px, 15vh, 170px);
+  background: radial-gradient(50% 60% at 100% 8%, rgba(59, 124, 255, .12), transparent 70%), radial-gradient(45% 55% at 0% 92%, rgba(211, 23, 43, .1), transparent 70%), var(--ink-950); }
+.pierce-in { display: grid; grid-template-columns: minmax(280px, .8fr) 1.6fr; gap: clamp(36px, 5vw, 90px); align-items: start; }
+.pierce-copy { position: sticky; top: calc(var(--nav-h) + 48px); }
+.pierce-copy .h2 { margin: 0; font-size: clamp(40px, 5vw, 80px); }
+.pierce-copy .script-line { margin-top: 8px; }
+.pierce-copy .body { margin: 22px 0 0; max-width: 40ch; }
+.pierce-care { display: flex; align-items: center; gap: 12px; margin: 16px 0 30px; color: var(--bone); font-size: 15px; letter-spacing: .02em; }
+.pierce-care::before { content: ""; width: 22px; height: 1px; background: var(--red-hi); flex: none; }
+.pierce-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(10px, 1.2vw, 18px); }
+.pierce-grid li:nth-child(3n + 2) { translate: 0 clamp(18px, 4vh, 48px); } /* the middle column sits lower: a case, not a spreadsheet */
+.pierce-tile { position: relative; display: block; width: 100%; aspect-ratio: 4 / 5; padding: 0; border: 0; overflow: hidden; background: var(--ink-800); cursor: pointer; }
+.pierce-tile img { width: 100%; height: 100%; object-fit: cover; display: block; filter: saturate(.9); transition: transform .7s var(--ease), filter .7s; }
+.pierce-tile::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(0deg, rgba(11, 10, 11, .8) 0%, rgba(11, 10, 11, 0) 40%); }
+.pierce-tile::before { content: ""; position: absolute; inset: -10% -60%; z-index: 1; pointer-events: none; translate: -100% 0;
+  background: linear-gradient(105deg, transparent 42%, rgba(255, 255, 255, .2) 50%, transparent 58%); }
+.pierce-tile:hover img, .pierce-tile:focus-visible img { transform: scale(1.05); filter: saturate(1); }
+.motion .pierce-tile:hover::before { translate: 100% 0; transition: translate 1s var(--ease); }
+.pierce-tile:focus-visible { outline: 2px solid var(--red-hi); outline-offset: 3px; }
+.pierce-tag { position: absolute; left: 12px; right: 10px; bottom: 10px; z-index: 2; text-align: left; font-size: 12px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--bone); }
+@media (max-width: 999px) {
+  .pierce-in { grid-template-columns: 1fr; }
+  .pierce-copy { position: static; }
+  .pierce-copy .body { max-width: 52ch; }
+}
+@media (max-width: 759px) {
+  .piercing { padding: 72px 0 88px; }
+  .pierce-copy .h2 { font-size: 40px; }
+  .pierce-copy .body { font-size: 15px; }
+  .pierce-care { margin: 12px 0 24px; font-size: 14px; }
+  .pierce-grid { gap: 6px; }
+  .pierce-grid li:nth-child(3n + 2) { translate: 0 14px; }
+  .pierce-tag { left: 7px; right: 6px; bottom: 6px; font-size: 11px; letter-spacing: .02em; text-transform: none; line-height: 1.2; }
+}
 .walkin { padding: clamp(90px, 14vh, 150px) 0; background: #0e0d10; overflow: hidden; text-align: center; }
 
 .glitch { position: relative; margin: 0; font-family: var(--f-body); font-weight: 900; font-style: italic; font-stretch: 125%; font-size: clamp(64px, 16vw, 230px); line-height: .9; letter-spacing: -.01em; }

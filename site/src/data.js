@@ -119,14 +119,37 @@ export const PROCESS = [
 export const SPACE = {
   line: "Vinili e oggetti sugli scaffali, piante, neon, le postazioni: lo studio com'è.", // PLACEHOLDER (round 15: "in un giro solo" went with the walk video)
   // round 25 (owner: "fetch the pictures from the folder 'final foto studio' and use them for the Studio fotos instead of the
-  // current one"): six photos, a walk from the door to the records; titles: PLACEHOLDER
+  // current one"): six photos; titles: PLACEHOLDER, except the photo room and the changing room (owner, round 25b)
   photos: [
-    { file: "ingresso", t: "L'ingresso", rot: -3, alt: "L'ingresso dello studio: porte dipinte a mano, edera dal soffitto e neon viola" },
-    { file: "corridoio", t: "Il corridoio", rot: 2.5, alt: "Il corridoio con i tappeti Chill Vibes, l'edera e le scritte al neon" },
+    { file: "stanza-foto", t: "La stanza per le foto", rot: -3, alt: "La stanza per le foto: porte dipinte a mano, edera dal soffitto e neon viola" },
+    { file: "camerino", t: "Il camerino", rot: 2.5, alt: "Il camerino per cambiarsi: i tappeti Chill Vibes, le tende, l'edera e le scritte al neon" },
     { file: "sala", t: "La sala", rot: -1.5, alt: "La sala: divano in pelle, piante e il soffitto dipinto a onde blu" },
     { file: "postazione", t: "La postazione", rot: 2, alt: "La postazione: il lettino nero, il carrello rosso e le lampade" },
     { file: "nicchia", t: "La nicchia rossa", rot: -2.5, alt: "La nicchia rossa con il quadro, gli scaffali di oggetti e le piante" },
     { file: "scaffale", t: "La parete dei vinili", rot: 1.5, alt: "La parete dei vinili incorniciati e, sul banco, una stampa" },
+  ],
+};
+
+// Piercing (round 26, owner: "dobbiamo aggiungere una sessione per i piercing, go fetch the content from his IG profile and
+// integrate it to the website with a piercing section"). Every fact is from his own piercing posts on @sgt.zippo:
+// C8UnKnTImTb (17/06/2024: "dopo tanti anni che mi chiedete piercing vari, eccovi accontentati"; helix, nostril, navel,
+// septum, vertical labret), C8WbNj5syzE (vertical labret "con attrezzatura Stiletto … a mano libera senza pinze"),
+// C9ProLDI8zS (tragus and septum "gold plated 18k", terminals by Tremun, double helix), DLhDWtusFGM (daith "in titanio
+// anodizzato oro", flat helix with Swarovski pavé, "Pulizia, precisione e zero stress nel post piercing", "ogni orecchio
+// ha il suo carattere"), DLhEPU5MlEQ (two high nostrils), DLhEp3dM9IJ (daith: "titanio … implantologico, certificato e
+// sicuro", Swarovski pavé, "Zero nickel"). The copy (in index.html, #piercing) is in his words; the owner may edit it.
+export const PIERCING = {
+  wa: "Ciao Zippo! Vorrei informazioni per un piercing.",
+  photos: [ // the placement as the label; post = the Instagram post it comes from
+    { file: "daith-flat-helix", t: "Daith e flat helix", post: "p/DLhDWtusFGM/", alt: "Orecchio guarito: daith in titanio anodizzato oro e flat helix con gioiello curvo e pavé di Swarovski" },
+    { file: "high-nostril", t: "High nostril", post: "p/DLhEPU5MlEQ/", alt: "Due high nostril simmetrici sul naso, ispirati a Pain" },
+    { file: "septum", t: "Septum", post: "p/C9ProLDI8zS/?img_index=2", alt: "Septum con circular barbell placcato oro 18k" },
+    { file: "vertical-labret", t: "Vertical labret", post: "p/C8WbNj5syzE/?img_index=2", alt: "Vertical labret sul labbro inferiore, fatto a mano libera senza pinze" },
+    { file: "daith-pave", t: "Daith", post: "p/DLhEp3dM9IJ/", alt: "Daith guarito con gioiello in titanio implantologico e pavé di Swarovski" },
+    { file: "tragus", t: "Tragus", post: "p/C9ProLDI8zS/", alt: "Tragus con gioiello placcato oro 18k e gemma nera" },
+    { file: "nostril", t: "Nostril", post: "p/C8UnKnTImTb/?img_index=8", alt: "Piercing alla narice con un piccolo brillante" },
+    { file: "ombelico", t: "Ombelico", post: "p/C8UnKnTImTb/?img_index=5", alt: "Piercing all'ombelico con barretta curva" },
+    { file: "doppio-helix", t: "Doppio helix", post: "p/C9ProLDI8zS/?img_index=3", alt: "Doppio helix sulla parte alta dell'orecchio" },
   ],
 };
 

@@ -17,7 +17,7 @@ import { createDesk } from "./desk.js";
 import { createNeonRail } from "./vrail.js";
 import { createInkLayer, createMachine, tattooTitle, stencilHeadings, buildDrips } from "./fx.js";
 import { createBadge } from "./badge.js";
-import { STUDIO, waLink, LOADER_LINES, STYLES, STYLE_LABEL, WORKS, PROCESS, WALKIN, SNAKES, SPACE, PRIVACY_UPDATED } from "./data.js";
+import { STUDIO, waLink, LOADER_LINES, STYLES, STYLE_LABEL, WORKS, PROCESS, WALKIN, SNAKES, SPACE, PIERCING, PRIVACY_UPDATED } from "./data.js";
 import { FrameStrip } from "./lib/framestrip.js";
 import { FRESH, FEED, MIX_INK, OFF_ARCHIVE } from "./catalogue.js";
 import { DESIGNS } from "./designs.js";
@@ -317,6 +317,19 @@ function actSpace() {
     scrollTrigger: { trigger: host, start: "top 85%" } });
 }
 
+/* ── Act 4b: piercing (round 26) — his words beside nine close-ups from his piercing posts; a tap opens one with its post ── */
+function actPiercing() {
+  const host = $("#pierce-grid");
+  host.innerHTML = PIERCING.photos.map((p) => `<li><button class="pierce-tile" type="button" aria-label="${p.t}: ingrandisci">
+      <img src="/piercing/${p.file}_s.webp" srcset="/piercing/${p.file}_s.webp 360w, /piercing/${p.file}.webp 720w" sizes="(max-width: 759px) 31vw, (max-width: 999px) 30vw, 300px" alt="${p.alt}" loading="lazy" decoding="async" />
+      <span class="pierce-tag">${p.t}</span></button></li>`).join("");
+  const photos = PIERCING.photos.map((p) => ({ photo: `/piercing/${p.file}_l.webp`, alt: p.alt, title: p.t, group: "Piercing", post: p.post }));
+  $$(".pierce-tile", host).forEach((b, i) => b.addEventListener("click", () => lightboxOpen(photos, i)));
+  $("#pierce-wa").href = waLink(PIERCING.wa);
+  if (!REDUCED) gsap.from($$(".pierce-tile", host), { opacity: 0, y: 40, duration: 0.9, stagger: 0.07, ease: "power3.out",
+    scrollTrigger: { trigger: host, start: "top 85%" } });
+}
+
 /* ── Act 3: styles — four layers crossfading in one pinned stage ── */
 function actStyles() {
   const N = STYLES.length;
@@ -481,11 +494,12 @@ function actArchive() {
     idx = (i + list.length) % list.length;
     const w = list[idx];
     lb.setAttribute("aria-label", w.photo ? "Foto dello studio" : "Lavoro");
-    if (w.photo) { // a photo of the studio (round 15): no style, no skin to switch to, no post
+    if (w.photo) { // a photo (round 15: the studio; round 26: a piercing, with its post): no style, no skin to switch to
       fig.classList.remove("ink");
       img.src = w.photo; img.alt = w.alt;
-      cap.innerHTML = `<b>The Studio Space</b>${w.title} · ${idx + 1}/${list.length}`;
-      ig.hidden = true; mode.hidden = true;
+      cap.innerHTML = `<b>${w.group || "The Studio Space"}</b>${w.title} · ${idx + 1}/${list.length}`;
+      ig.hidden = !w.post; mode.hidden = true;
+      if (w.post) { ig.href = `https://www.instagram.com/${w.post}`; ig.setAttribute("aria-label", `${w.title}: apri il post su Instagram`); }
       return;
     }
     const ink = inkMode && w.ink && !w.design; // his drawings show the full sheet
@@ -595,7 +609,7 @@ function chrome() {
   // the neon rail: one tube down the left edge, brightest where you are; its stations are the sections
   const rail = createNeonRail($("#vrail"), {
     sections: [["top", "Inizio"], ["postazione", "Processo"], ["vvv", "VVV"], ["spazio", "The Studio Space"], ["stili", "Stili"],
-      ["archivio", "Archivio"], ["walkin", "Walk-in"], ["studio", "Studio"]].map(([id, label]) => ({ el: $(`#${id}`), label })),
+      ["archivio", "Archivio"], ["piercing", "Piercing"], ["walkin", "Walk-in"], ["studio", "Studio"]].map(([id, label]) => ({ el: $(`#${id}`), label })),
     mobile: MOBILE, reduced: REDUCED,
     scrollTo: (el) => lenis.scrollTo(el, { duration: 1.6 }),
   });
@@ -728,7 +742,7 @@ actProcess();
 actStudio(); // round 18: the VVV act comes before The Studio Space on the page, so it is built first
 actSpace();
 actStyles();
-actArchive();
+actArchive(); actPiercing();
 actContact();
 chrome();
 effects();
