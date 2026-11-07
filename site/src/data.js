@@ -118,10 +118,15 @@ export const PROCESS = [
 // (round 15: the walk video and its stops are gone). rot: each print's tilt in degrees
 export const SPACE = {
   line: "Vinili e oggetti sugli scaffali, piante, neon, le postazioni: lo studio com'è.", // PLACEHOLDER (round 15: "in un giro solo" went with the walk video)
-  photos: [ // titles: PLACEHOLDER
-    { file: "parete", t: "La parete", rot: -3, alt: "La parete dello studio: una nicchia rossa con un quadro, scaffali di vinili e oggetti da collezione" },
-    { file: "serpente", t: "Il serpente d'oro", rot: 2.5, alt: "Stampa incorniciata di un serpente in oro su fondo blu notte" },
-    { file: "vinili", t: "La parete dei vinili", rot: -1.5, alt: "Parete di vinili incorniciati e, sul banco, la stampa di una tigre" },
+  // round 25 (owner: "fetch the pictures from the folder 'final foto studio' and use them for the Studio fotos instead of the
+  // current one"): six photos, a walk from the door to the records; titles: PLACEHOLDER
+  photos: [
+    { file: "ingresso", t: "L'ingresso", rot: -3, alt: "L'ingresso dello studio: porte dipinte a mano, edera dal soffitto e neon viola" },
+    { file: "corridoio", t: "Il corridoio", rot: 2.5, alt: "Il corridoio con i tappeti Chill Vibes, l'edera e le scritte al neon" },
+    { file: "sala", t: "La sala", rot: -1.5, alt: "La sala: divano in pelle, piante e il soffitto dipinto a onde blu" },
+    { file: "postazione", t: "La postazione", rot: 2, alt: "La postazione: il lettino nero, il carrello rosso e le lampade" },
+    { file: "nicchia", t: "La nicchia rossa", rot: -2.5, alt: "La nicchia rossa con il quadro, gli scaffali di oggetti e le piante" },
+    { file: "scaffale", t: "La parete dei vinili", rot: 1.5, alt: "La parete dei vinili incorniciati e, sul banco, una stampa" },
   ],
 };
 

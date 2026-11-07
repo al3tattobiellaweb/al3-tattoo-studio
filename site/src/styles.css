@@ -631,7 +631,8 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .filters button.f-snake[aria-pressed="true"] { background: var(--red); border-color: var(--red); color: #fff; }
 
 /* ══ The Studio Space (round 8; round 15: the walk video is gone) ═══════════════════════════════════════
-   the title and its line, then his three photos as prints side by side; a click opens one in the lightbox. A red light
+   the title and its line, then his photos as prints side by side (six since round 25: one row on wide screens, two rows
+   of three below 1000 px); a click opens one in the lightbox. A red light
    from the left and a blue one from the right, the studio's neon. */
 .space { position: relative; overflow: hidden; padding: clamp(110px, 16vh, 180px) 0 clamp(90px, 13vh, 150px);
   background: radial-gradient(55% 70% at 0% 35%, rgba(211, 23, 43, .13), transparent 70%), radial-gradient(55% 70% at 100% 65%, rgba(59, 124, 255, .11), transparent 70%), var(--ink-950); }
@@ -639,11 +640,20 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .space-copy { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 18px 48px; }
 .space-copy .h2 { font-size: clamp(34px, 4vw, 64px); white-space: nowrap; margin: 0; } /* "The Studio / Space": two lines */
 .space-line { color: var(--bone-2); font-size: 17px; line-height: 1.5; max-width: 36ch; margin: 0 0 6px; }
-.space-photos { list-style: none; margin: clamp(48px, 7vh, 84px) 0 0; padding: 0; display: flex; justify-content: center; align-items: flex-start;
-  gap: clamp(18px, 3vw, 52px); }
-.space-photos li { width: min(30%, calc(64svh * 9 / 16)); }
-.space-photos li:nth-child(2) { margin-top: clamp(18px, 4vh, 44px); }
-.space-photos li:nth-child(3) { margin-top: clamp(6px, 1.5vh, 16px); }
+.space-photos { list-style: none; max-width: 1840px; margin: clamp(48px, 7vh, 84px) auto 0; padding: 0 var(--gut-r); display: flex; flex-wrap: wrap;
+  justify-content: center; align-items: flex-start; --g: clamp(14px, 1.6vw, 30px); gap: clamp(26px, 4vh, 44px) var(--g); }
+.space-photos li { width: min(calc((100% - 5 * var(--g)) / 6), calc(66svh * 9 / 16)); } /* six in a row; never taller than the screen allows */
+.space-photos li:nth-child(6n + 2) { margin-top: clamp(18px, 4vh, 44px); } /* a hand-laid stagger, as the three had */
+.space-photos li:nth-child(6n + 3) { margin-top: clamp(6px, 1.5vh, 16px); }
+.space-photos li:nth-child(6n + 4) { margin-top: clamp(14px, 3vh, 34px); }
+.space-photos li:nth-child(6n + 5) { margin-top: clamp(2px, .5vh, 6px); }
+.space-photos li:nth-child(6n + 6) { margin-top: clamp(10px, 2.4vh, 26px); }
+@media (max-width: 999px) { /* two rows of three */
+  .space-photos li { width: calc((100% - 2 * var(--g)) / 3); }
+  .space-photos li:nth-child(n) { margin-top: 0; }
+  .space-photos li:nth-child(3n + 2) { margin-top: clamp(14px, 3vh, 34px); }
+  .space-photos li:nth-child(3n + 3) { margin-top: clamp(5px, 1.2vh, 14px); }
+}
 .space-photo { position: relative; display: block; width: 100%; aspect-ratio: 9 / 16; padding: 0; border: 6px solid #efe9e0; background: #efe9e0;
   box-shadow: 0 30px 60px -20px rgba(0, 0, 0, .9); rotate: var(--rot); transition: rotate .5s var(--ease), translate .5s var(--ease), box-shadow .5s; }
 .space-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
@@ -657,10 +667,9 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   .space { padding: 72px 0 64px; }
   .space-copy { display: block; }
   .space-line { font-size: 15px; margin: 12px 0 0; }
-  .space-photos { margin-top: 26px; gap: 10px; }
-  .space-photos li { width: calc((100% - 20px) / 3); }
-  .space-photos li:nth-child(2) { margin-top: 14px; }
-  .space-photos li:nth-child(3) { margin-top: 5px; }
+  .space-photos { margin-top: 26px; padding: 0 var(--gut-l); --g: 10px; row-gap: 22px; }
+  .space-photos li:nth-child(3n + 2) { margin-top: 14px; }
+  .space-photos li:nth-child(3n + 3) { margin-top: 5px; }
   .space-photo { border-width: 4px; }
   .space-zoom { width: 26px; height: 26px; right: 5px; bottom: 5px; }
   .space-zoom .ico { width: 13px; height: 13px; }

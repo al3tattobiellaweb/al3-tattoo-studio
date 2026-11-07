@@ -23,7 +23,7 @@ done
 cp_webp() { ffmpeg -v error -y -i "$RAW/raw/$1.jpg" -c:v libwebp -quality 86 "$OUT/studio/$2.webp"; }
 cp_webp zip_post_19 zippo-at-work
 cp_webp al3_post_15 zippo-neon
-cp_webp zip_post_12 bulldog
+# cp_webp zip_post_12 bulldog   (round 25: the dog's print is now bulldog-divano.webp, from scripts/studio-space.py)
 cp_webp zip_post_09 walkin-poster
 cp_webp zip_post_17 tokyo
 cp_webp zip_hl_07 jewel

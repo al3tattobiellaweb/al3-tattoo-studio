@@ -238,7 +238,7 @@ Lit, not lifted. Depth comes from neon on a dark ground and from real 3D, such a
 
 ### Shadow Vocabulary
 - **Floating sheet** (`box-shadow: 0 40px 80px -30px rgba(0, 0, 0, .9)`): his drawings in Stili, which hang in the air.
-- **Print** (`box-shadow: 0 30px 60px -20px rgba(0, 0, 0, .9)`): the three photos of The Studio Space, side by side; on hover a print straightens, lifts 8px and its shadow deepens, and a small enlarge sign shows (always shown on touch). A click opens it in the lightbox.
+- **Print** (`box-shadow: 0 30px 60px -20px rgba(0, 0, 0, .9)`): the six photos of The Studio Space, side by side (one row from 1000 px, two rows of three below; round 25); on hover a print straightens, lifts 8px and its shadow deepens, and a small enlarge sign shows (always shown on touch). A click opens it in the lightbox.
 - **Neon tube** (`box-shadow: 0 0 8px 2px var(--red-hi), 0 0 40px 10px rgba(211, 23, 43, .65), 0 0 160px 60px rgba(211, 23, 43, .25)`): the hero's two tubes, the same way in blue.
 - **Dialog** (`box-shadow: 0 40px 100px rgba(0, 0, 0, .8)`): the privacy notice.
 

@@ -309,7 +309,7 @@ function actSpace() {
   $("#space-line").textContent = SPACE.line;
   const host = $("#space-photos");
   host.innerHTML = SPACE.photos.map((p) => `<li><button class="space-photo" type="button" style="--rot:${p.rot}deg" aria-label="${p.t}: ingrandisci">
-      <img src="/space/${p.file}${MOBILE ? "_s" : ""}.webp" alt="${p.alt}" loading="lazy" decoding="async" />
+      <img src="/space/${p.file}_s.webp" srcset="/space/${p.file}_s.webp 360w, /space/${p.file}.webp 608w" sizes="(max-width: 999px) 31vw, 300px" alt="${p.alt}" loading="lazy" decoding="async" />
       <span class="space-zoom" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24"><path d="M14 4h6v6M10 20H4v-6M20 4l-6.5 6.5M4 20l6.5-6.5"/></svg></span></button></li>`).join("");
   const photos = SPACE.photos.map((p) => ({ photo: `/space/${p.file}_l.webp`, alt: p.alt, title: p.t }));
   $$(".space-photo", host).forEach((b, i) => b.addEventListener("click", () => lightboxOpen(photos, i)));
