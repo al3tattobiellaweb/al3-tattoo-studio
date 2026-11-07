@@ -332,7 +332,7 @@ function actStyles() {
     const l = document.createElement("div");
     l.className = "ch-layer" + (s.trio.length > 3 ? " four" : "") + (s.trio.length > 4 ? " five" : "");
     l.innerHTML = s.trio.map((id, j) => {
-      const w = ARCHIVE.find((x) => x.id === id) || BADGE_TILE; // his drawings (zNN), or the badge from his folder
+      const w = ARCHIVE.find((x) => x.id === id) || BADGE_TILE; // real tattoos from the archive (round 24; were his drawings)
       return `<figure class="ch-card c${j}"><img src="/works/${w.file}${MOBILE && j ? "_s" : ""}.webp" alt="${altText(w)}" /></figure>`;
     }).join("");
     $$("img", l).forEach((img) => gate.image(img));

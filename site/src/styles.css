@@ -337,7 +337,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   --h1: min(50svh, 520px, var(--h0) * .78); --h2: min(46svh, 480px, var(--h0) * .72); }
 .ch-glow { position: absolute; inset: 0; opacity: 0; }
 .ch-layer { position: absolute; inset: 0; opacity: 0; pointer-events: none; }
-.ch-card { position: absolute; top: 50%; margin: 0; /* a figure: no UA margin */ aspect-ratio: 764 / 1080; /* his drawings' sheet */ overflow: hidden; box-shadow: 0 40px 80px -30px rgba(0, 0, 0, .9); will-change: transform; }
+.ch-card { position: absolute; top: 50%; margin: 0; /* a figure: no UA margin */ aspect-ratio: 764 / 1080; /* his drawings' sheet; since round 24 real photos, cropped to it (each pick checked whole inside) */ overflow: hidden; box-shadow: 0 40px 80px -30px rgba(0, 0, 0, .9); will-change: transform; }
 .ch-card img { width: 100%; height: 100%; object-fit: cover; will-change: transform; }
 .ch-card.c0 { height: var(--h0); left: max(calc(var(--cpr) + (100vw - var(--cpr) - 120px) / 2), calc(var(--cpr) + 72px + var(--h0) * .354)); z-index: 3; }
 .ch-card.c1 { height: var(--h1); left: calc(var(--cpr) + 24px + var(--h1) * .354); z-index: 2; filter: brightness(.62) saturate(.8); }
@@ -422,6 +422,8 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .vvv-copy .h2.latin { font-size: clamp(32px, 3.8vw, 64px); text-shadow: 0 2px 22px rgba(0, 0, 0, .55); } /* three lines in the column */
 .vvv-copy .script-line { margin-top: 10px; font-size: clamp(22px, 2.05vw, 34px); text-shadow: 0 1px 12px rgba(0, 0, 0, .7); } /* one line in the column */
 .vvv-copy .body { margin: 20px 0 0; max-width: 34ch; color: var(--bone); text-shadow: 0 1px 12px rgba(0, 0, 0, .75); }
+.vvv-copy .vvv-ig { margin-top: 26px; box-shadow: 0 2px 18px rgba(0, 0, 0, .45); } /* round 23b: the VVV reels on Instagram */
+.vvv-ig .ico { width: 18px; height: 18px; flex: none; }
 .vvv-shade { position: absolute; inset: 0; pointer-events: none; /* from the act above, into the copy below */
   background: linear-gradient(180deg, var(--ink-950) 0%, rgba(11, 10, 11, 0) 14%, rgba(11, 10, 11, 0) 64%, rgba(11, 10, 11, .55) 82%, var(--ink-950) 99%); } /* from the process act above (round 18) */
 .studio-facts .info { margin-top: 0; }
@@ -684,6 +686,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   .vvv-copy .h2.latin { font-size: 30px; }
   .vvv-copy .script-line { font-size: 22px; margin-top: 6px; }
   .vvv-copy .body { font-size: 15px; margin-top: 12px; line-height: 1.5; }
+  .vvv-copy .vvv-ig { margin-top: 16px; min-height: 44px; padding: 0 20px; font-size: 14px; }
 }
 
 /* ══ round 8: Partita IVA + privacy notice ═════════════════════════════════════════════════════════════ */

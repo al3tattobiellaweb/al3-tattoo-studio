@@ -42,20 +42,21 @@ export const LOADER_LINES = [
 export const STYLES = [
   { key: "realismo", name: "Realismo", kind: "Black & grey", glow: "#d3172b",
     line: "Volti, animali, divinità. Il nero costruito a strati fino al grigio più leggero, come in una fotografia.", // PLACEHOLDER
-    // only his drawings from assets/da zippo (owner, round 8): owl, tiger, samurai, lotus, hand & apple
-    trio: ["z13", "z09", "z04", "z15", "z19"] },
+    // round 24 (owner: "add 3/4 of the best real tattoos to each style here and remove the disegni"; was his drawings, round 8):
+    // the lion monument, the wolf, three faces, eye and storm
+    trio: ["n001", "33", "21", "05"] },
   { key: "blackwork", name: "Blackwork", kind: "Ornamentale e illustrativo", glow: "#3b7cff",
     line: "Nero pieno, geometrie, ornamenti e illustrazione. Contrasto che regge negli anni.", // PLACEHOLDER
-    // his drawings: cranes and ornaments, ornamental with solid blacks, cat samurai
-    trio: ["z10", "z11", "z18"] },
+    // round 24: the tiger, the dragon on the neck, the moth, the sacred heart cover-up
+    trio: ["a303", "09", "07", "n005"] },
   { key: "fineline", name: "Fine line", kind: "Tratto sottile", glow: "#eee8e1",
     line: "Ago sottile e mano leggera: fiori, simboli, dettagli piccoli e precisi.", // PLACEHOLDER
-    // his drawings: ornamental line work, ornamental skull
-    trio: ["z14", "z12"] },
+    // round 24: roses and peonies, snake and moon, snake and butterfly, the astronaut
+    trio: ["13", "a461", "17", "a450"] },
   { key: "lettering", name: "Lettering", kind: "Corsivo, gotico, chicano", glow: "#c8a15a",
     line: "Nomi, date, frasi. La scritta giusta per la frase giusta.", // PLACEHOLDER
-    // his drawings: "Mon cher" (the lettered card), the AL3 badge from his folder (tiles only, not a design: z21)
-    trio: ["z17", "z21"] },
+    // round 24: chicano lettering and the joker, two monograms, lettering with a portrait
+    trio: ["20", "a238", "a352", "a239"] },
 ];
 
 export const STYLE_LABEL = { disegno: "Disegno originale", realismo: "Realismo", blackwork: "Blackwork", fineline: "Fine line", lettering: "Lettering", colore: "Colore" };
